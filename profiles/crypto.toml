@@ -1,0 +1,37 @@
+name = "crypto"
+description = "On-chain whale movements only: Arkham + Whale Alert, no filings at all."
+
+# A different kind of source entirely: nobody files anything on-chain, so there is no
+# jurisdiction, no filer relationship, and no disclosure lag -- just a labelled wallet
+# moving a large balance. This profile is for a reader who wants that feed alone, not
+# mixed in with SEC/Taiwan/Japan filings it has nothing in common with.
+#
+# Both Arkham and Whale Alert need a free API key (see .env.example); this profile does
+# not change that, it only stops every *other* source from running so those two are the
+# whole digest once the keys are set.
+
+# The on-chain threshold is conventionally higher than the $5M disclosure gate: a $5M
+# transfer is unremarkable on most chains, where "whale" activity is usually discussed
+# in the tens of millions. Raised here so the crypto feed is not dominated by routine
+# exchange rebalancing.
+threshold_usd = 10000000.0
+near_threshold_usd = 8000000.0
+instant_usd = 250000000.0
+
+[sources]
+enabled = ["arkham", "whale_alert"]
+
+[filters]
+# CRYPTO is its own Jurisdiction bucket (see models/enums.py) precisely because on-chain
+# activity has no country -- this is the one filter that actually matters for this
+# profile, and it is what stops a differently-configured environment variable from
+# leaking a filing source back in if one gets enabled by accident.
+jurisdictions = ["CRYPTO"]
+
+# CRYPTO_TRANSFER is the only transaction type Arkham/Whale Alert ever produce; listed
+# explicitly anyway so this file stays correct if a filing-type event ever reached it.
+event_types = ["crypto_transfer"]
+
+# Wallet labels are not officer/director relationships; role filtering does not apply.
+filer_roles = []
+exclude_filer_roles = []

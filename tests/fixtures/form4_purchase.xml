@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<ownershipDocument>
+  <documentType>4</documentType>
+  <periodOfReport>2026-07-24</periodOfReport>
+  <issuer>
+    <issuerCik>0000320193</issuerCik>
+    <issuerName>Acme Micro Corp</issuerName>
+    <issuerTradingSymbol>ACME</issuerTradingSymbol>
+  </issuer>
+  <reportingOwner>
+    <reportingOwnerId>
+      <rptOwnerCik>0001214156</rptOwnerCik>
+      <rptOwnerName>Warren E. Buffett</rptOwnerName>
+    </reportingOwnerId>
+    <reportingOwnerRelationship>
+      <isDirector>1</isDirector>
+      <isOfficer>1</isOfficer>
+      <officerTitle>CEO</officerTitle>
+    </reportingOwnerRelationship>
+  </reportingOwner>
+  <nonDerivativeTable>
+    <nonDerivativeTransaction>
+      <securityTitle><value>Common Stock</value></securityTitle>
+      <transactionDate><value>2026-07-24</value></transactionDate>
+      <transactionCoding>
+        <transactionFormType>4</transactionFormType>
+        <transactionCode>P</transactionCode>
+        <equitySwapInvolved>0</equitySwapInvolved>
+      </transactionCoding>
+      <transactionAmounts>
+        <transactionShares><value>500000</value></transactionShares>
+        <transactionPricePerShare><value>15.00</value></transactionPricePerShare>
+        <transactionAcquiredDisposedCode><value>A</value></transactionAcquiredDisposedCode>
+      </transactionAmounts>
+    </nonDerivativeTransaction>
+    <nonDerivativeTransaction>
+      <securityTitle><value>Common Stock</value></securityTitle>
+      <transactionDate><value>2026-07-24</value></transactionDate>
+      <transactionCoding>
+        <transactionFormType>4</transactionFormType>
+        <transactionCode>P</transactionCode>
+        <equitySwapInvolved>0</equitySwapInvolved>
+      </transactionCoding>
+      <transactionAmounts>
+        <transactionShares><value>100000</value></transactionShares>
+        <transactionPricePerShare><value>15.20</value></transactionPricePerShare>
+        <transactionAcquiredDisposedCode><value>A</value></transactionAcquiredDisposedCode>
+      </transactionAmounts>
+    </nonDerivativeTransaction>
+  </nonDerivativeTable>
+</ownershipDocument>

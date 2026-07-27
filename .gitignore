@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+.venv/
+.venv.nosync/
+*.db
+.env
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.DS_Store
+deploy/articles/
+
+# Operator records written at runtime, not source.
+sent_digests.jsonl
+quarantine.jsonl
+*.jsonl
+
+# Generated weekly pages: regenerated from the corpus before every deploy, so committing
+# them would be committing output rather than source.
+deploy/public/*.html
+# One-off corpus backups taken before a migration.
+whale.db.bak-*

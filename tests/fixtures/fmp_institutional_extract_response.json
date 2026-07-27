@@ -1,0 +1,50 @@
+[
+  {
+    "date": "2026-03-31",
+    "filingDate": "2026-05-15",
+    "acceptedDate": "2026-05-15",
+    "cik": "0001067983",
+    "securityCusip": "21036P108",
+    "symbol": "STZ",
+    "nameOfIssuer": "CONSTELLATION BRANDS INC",
+    "shares": 632890,
+    "titleOfClass": "CL A",
+    "sharesType": "SH",
+    "putCallShare": "",
+    "value": 94933500,
+    "link": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526226661/0001193125-26-226661-index.htm",
+    "finalLink": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526226661/53405.xml"
+  },
+  {
+    "date": "2026-03-31",
+    "filingDate": "2026-05-15",
+    "acceptedDate": "2026-05-15",
+    "cik": "0001067983",
+    "securityCusip": "650111107",
+    "symbol": "NYT",
+    "nameOfIssuer": "NEW YORK TIMES CO MTN BE",
+    "shares": 15146535,
+    "titleOfClass": "CL A",
+    "sharesType": "SH",
+    "putCallShare": "",
+    "value": 1268219376,
+    "link": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526226661/0001193125-26-226661-index.htm",
+    "finalLink": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526226661/53405.xml"
+  },
+  {
+    "date": "2026-03-31",
+    "filingDate": "2026-05-15",
+    "acceptedDate": "2026-05-15",
+    "cik": "0001067983",
+    "securityCusip": "530909100",
+    "symbol": "LLYVA",
+    "nameOfIssuer": "LIBERTY LIVE HOLDINGS INC",
+    "shares": 4986588,
+    "titleOfClass": "COM SER A",
+    "sharesType": "SH",
+    "putCallShare": "",
+    "value": 456970925,
+    "link": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526226661/0001193125-26-226661-index.htm",
+    "finalLink": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526226661/53405.xml"
+  }
+]

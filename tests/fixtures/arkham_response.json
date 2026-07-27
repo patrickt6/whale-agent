@@ -1,0 +1,26 @@
+{
+  "transfers": [
+    {
+      "chain": "ethereum",
+      "transactionHash": "0xfeed01",
+      "tokenSymbol": "USDC",
+      "unitValue": 75000000,
+      "historicalUSD": 75000000,
+      "blockTimestamp": "2026-07-24T14:05:00Z",
+      "fromAddress": {"address": "0xaaa", "arkhamEntity": {"name": "Jump Trading", "type": "fund"}},
+      "toAddress": {"address": "0xbbb", "arkhamEntity": {"name": "Coinbase", "type": "cex"}},
+      "txURL": "https://etherscan.io/tx/0xfeed01"
+    },
+    {
+      "chain": "ethereum",
+      "transactionHash": "0xfeed02",
+      "tokenSymbol": "ETH",
+      "unitValue": 5000,
+      "historicalUSD": 18000000,
+      "blockTimestamp": "2026-07-24T15:00:00Z",
+      "fromAddress": {"address": "0xccc"},
+      "toAddress": {"address": "0xddd"},
+      "txURL": "https://etherscan.io/tx/0xfeed02"
+    }
+  ]
+}

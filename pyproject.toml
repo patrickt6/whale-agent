@@ -1,0 +1,103 @@
+[project]
+name = "whale-agent"
+version = "0.1.0"
+description = "Whale-watching alerting agent: ranked digest of large public disclosed positions."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+keywords = [
+    "sec-filings",
+    "form-4",
+    "13d",
+    "insider-trading",
+    "disclosures",
+    "finance",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Financial and Insurance Industry",
+    # No "License :: OSI Approved" classifier: PEP 639 supersedes those with the SPDX
+    # `license` expression above, and setuptools now hard-errors if both are present.
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Financial",
+]
+dependencies = [
+    "pydantic>=2.7",
+    "edgartools>=5.0",
+    "httpx>=0.27",          # every vendor/jurisdiction adapter and delivery channel
+    "beautifulsoup4>=4.12",  # Dataroma is HTML-only, no API
+]
+
+[project.urls]
+Homepage = "https://github.com/patrickt6/whale-agent"
+Issues = "https://github.com/patrickt6/whale-agent/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6", "mypy>=1.11"]
+
+[project.scripts]
+whale-digest = "whale_agent.jobs.digest_daily:main"
+whale-weekly = "whale_agent.jobs.digest_weekly:main"
+whale-watchdog = "whale_agent.jobs.watchdog:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+whale_agent = ["py.typed"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 95
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+# UP042 wants `class X(str, Enum)` rewritten to `StrEnum`. Declined deliberately: the two
+# differ in what `str(member)` returns, and these enums are interpolated into rendered
+# digest text, so the rewrite is an output change wearing a lint fix's clothes.
+ignore = ["UP042"]
+
+# The render modules hold literal HTML and CSS. Re-wrapping those lines would change the
+# whitespace inside the markup they emit, which the byte-for-byte determinism tests in
+# tests/test_determinism.py would (correctly) fail on. The limit is relaxed where the long
+# lines are markup, and enforced everywhere else.
+[tool.ruff.lint.per-file-ignores]
+"src/whale_agent/publishing/*.py" = ["E501"]
+"src/whale_agent/summarization/render_html.py" = ["E501"]
+"src/whale_agent/summarization/render_weekly_html.py" = ["E501"]
+"src/whale_agent/summarization/issue.py" = ["E501"]
+
+[tool.ruff.format]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+warn_unused_ignores = true
+
+# Pre-existing narrowing issues in these modules (Any-typed values crossing into
+# stricter APIs, mostly from third-party responses) predate the mypy rollout.
+# Ignored per-module rather than loosening the global config or touching src/.
+[[tool.mypy.overrides]]
+module = [
+    "whale_agent.ingestion.japan_edinet",
+    "whale_agent.ingestion.dataroma",
+    "whale_agent.ingestion.gov.lobbying",
+    "whale_agent.enrichment.macro",
+    "whale_agent.summarization.thesis",
+    "whale_agent.jobs.verify_sources",
+    "whale_agent.jobs.pipeline",
+]
+ignore_errors = true
+

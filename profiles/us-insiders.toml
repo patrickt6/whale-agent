@@ -1,0 +1,44 @@
+name = "us-insiders"
+description = "US Form 4 officers/directors only, $1M gate. A narrow, high-signal slice."
+
+# Rationale: Cohen-Malloy-Pomorski (2012) found the signal in insider trading concentrates
+# in *opportunistic* buys by people with real information about the business -- officers
+# and directors -- not in mechanical 10% owner crossings, which fire just as often for a
+# passive index fund rebalancing as for someone who actually knows something. This
+# profile trades breadth for that: one jurisdiction, one form, one relationship type.
+
+# Lower than the $5M default on purpose. A $1M open-market buy by a sitting CFO is a
+# smaller dollar figure but a comparable signal to a $5M buy by a director who owns
+# thousands of times that in stock already -- and the $5M gate was tuned for a
+# multi-jurisdiction, multi-source feed where $1M would be too much noise. Narrowing the
+# sources first is what makes a lower threshold viable here.
+threshold_usd = 1000000.0
+near_threshold_usd = 900000.0
+instant_usd = 100000000.0
+
+[sources]
+# Only the keyless, no-vendor US Form 4 feed. Dropping sec_13dg, Taiwan, Japan, crypto,
+# and every paid vendor is what makes "US insiders only" true instead of aspirational --
+# a profile that lists a filter but leaves every source running is not actually narrow.
+enabled = ["sec_form4"]
+
+[filters]
+# US only. Redundant with the source list above (Form 4 is inherently US), but explicit
+# here so the filter still holds if this profile is ever pointed at a broader source set.
+jurisdictions = ["US"]
+
+# Buys and sells both, deliberately: excluding sells would turn this into a buy-only
+# feed, which is a different, stronger claim than "US insiders" and belongs in its own
+# profile if wanted. Grants and option exercises are compensation mechanics, not
+# investment decisions, so they are left out.
+event_types = ["open_market_buy", "open_market_sell", "scheduled_sale"]
+
+# Substring-matched against the resolved role text (see scoring/filters.py), so
+# "director" also keeps "Director, Chief Executive Officer" and similar compounds.
+filer_roles = ["director", "officer"]
+
+# A bare "10% owner" crossing is usually a passive institution or index fund rebalancing
+# past a reporting threshold, not a person with inside information -- excluded even
+# though it is technically a Form 4 relationship, because it is the opposite of the
+# signal this profile is trying to isolate.
+exclude_filer_roles = ["10% owner"]

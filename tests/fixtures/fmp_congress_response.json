@@ -1,0 +1,18 @@
+[
+  {
+    "symbol": "NVDA",
+    "disclosureDate": "2026-07-22",
+    "transactionDate": "2026-06-30",
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "office": "Doe, Jane",
+    "district": "CA12",
+    "owner": "Spouse",
+    "assetDescription": "NVIDIA Corporation Common Stock",
+    "assetType": "Stock",
+    "type": "Purchase",
+    "amount": "$1,000,001 - $5,000,000",
+    "capitalGainsOver200USD": "False",
+    "link": "https://efdsearch.senate.gov/search/view/ptr/example/"
+  }
+]

@@ -1,0 +1,326 @@
+{
+  "count": 53822,
+  "next": "https://lda.senate.gov/api/v1/filings/?filing_year=2026&limit=3&page=2",
+  "previous": null,
+  "results": [
+    {
+      "url": "https://lda.senate.gov/api/v1/filings/dedc9bd7-5168-4cad-8973-aece07645b9f/",
+      "filing_uuid": "dedc9bd7-5168-4cad-8973-aece07645b9f",
+      "filing_type": "Q1",
+      "filing_type_display": "1st Quarter - Report",
+      "filing_year": 2026,
+      "filing_period": "first_quarter",
+      "filing_period_display": "1st Quarter (Jan 1 - Mar 31)",
+      "filing_document_url": "https://lda.senate.gov/filings/public/filing/dedc9bd7-5168-4cad-8973-aece07645b9f/print/",
+      "filing_document_content_type": "text/html",
+      "income": "50000.00",
+      "expenses": null,
+      "expenses_method": null,
+      "expenses_method_display": null,
+      "posted_by_name": "Timothy F. Hannegan",
+      "dt_posted": "2026-04-02T16:20:15-04:00",
+      "termination_date": null,
+      "registrant_country": "United States of America",
+      "registrant_ppb_country": null,
+      "registrant_address_1": "701 Pennsylvania Avenue, NW",
+      "registrant_address_2": "Suite 230",
+      "registrant_different_address": true,
+      "registrant_city": "Washington",
+      "registrant_state": "DC",
+      "registrant_zip": "20004",
+      "registrant": {
+        "id": 400918672,
+        "url": "https://lda.senate.gov/api/v1/registrants/400918672/",
+        "house_registrant_id": 42026,
+        "name": "PENN AVENUE PARTNERS",
+        "description": "&#226;\u20ac\u2039Government Affairs.",
+        "address_1": "701 Pennsylvania Avenue, NW",
+        "address_2": "Suite 230",
+        "address_3": null,
+        "address_4": null,
+        "city": "Washington",
+        "state": "DC",
+        "state_display": "District of Columbia",
+        "zip": "20004",
+        "country": "US",
+        "country_display": "United States of America",
+        "ppb_country": "US",
+        "ppb_country_display": "United States of America",
+        "contact_name": "BETH ANNE COLE",
+        "contact_telephone": "+1 202-256-5643",
+        "dt_updated": "2026-01-27T13:57:41.474980-05:00"
+      },
+      "client": {
+        "id": 196195,
+        "url": "https://lda.senate.gov/api/v1/clients/196195/",
+        "client_id": 595,
+        "name": "LOCKHEED MARTIN CORPORATION",
+        "general_description": "Global security and aerospace company.",
+        "client_government_entity": false,
+        "client_self_select": null,
+        "state": "MD",
+        "state_display": "Maryland",
+        "country": "US",
+        "country_display": "United States of America",
+        "ppb_state": "MD",
+        "ppb_state_display": "Maryland",
+        "ppb_country": "US",
+        "ppb_country_display": "United States of America",
+        "effective_date": "2018-04-02"
+      },
+      "lobbying_activities": [
+        {
+          "general_issue_code": "BUD",
+          "general_issue_code_display": "Budget/Appropriations",
+          "description": "Defense Appropriations.",
+          "foreign_entity_issues": "",
+          "lobbyists": [
+            {
+              "lobbyist": {
+                "id": 63760,
+                "prefix": null,
+                "prefix_display": null,
+                "first_name": "JERR",
+                "nickname": null,
+                "middle_name": null,
+                "last_name": "ROSENBAUM",
+                "suffix": null,
+                "suffix_display": null
+              },
+              "covered_position": "Legislative Director, Sen. John Cornyn; Chief of Staff, Rep. Robert Hurt; Chief of Staff, Rep. Jack Kingston; Chief of Staff, Rep. Virgil Goode",
+              "new": false
+            }
+          ],
+          "government_entities": [
+            {
+              "id": 2,
+              "name": "HOUSE OF REPRESENTATIVES"
+            },
+            {
+              "id": 1,
+              "name": "SENATE"
+            }
+          ]
+        }
+      ],
+      "conviction_disclosures": [],
+      "foreign_entities": [],
+      "affiliated_organizations": []
+    },
+    {
+      "url": "https://lda.senate.gov/api/v1/filings/b4893a31-d047-4ff4-be33-fede34eb8860/",
+      "filing_uuid": "b4893a31-d047-4ff4-be33-fede34eb8860",
+      "filing_type": "Q1",
+      "filing_type_display": "1st Quarter - Report",
+      "filing_year": 2026,
+      "filing_period": "first_quarter",
+      "filing_period_display": "1st Quarter (Jan 1 - Mar 31)",
+      "filing_document_url": "https://lda.senate.gov/filings/public/filing/b4893a31-d047-4ff4-be33-fede34eb8860/print/",
+      "filing_document_content_type": "text/html",
+      "income": null,
+      "expenses": "2450000.00",
+      "expenses_method": "C",
+      "expenses_method_display": "C",
+      "posted_by_name": "Tom McLemore",
+      "dt_posted": "2026-04-20T16:28:08-04:00",
+      "termination_date": null,
+      "registrant_country": "United States of America",
+      "registrant_ppb_country": null,
+      "registrant_address_1": "929 Long Bridge Drive",
+      "registrant_address_2": null,
+      "registrant_different_address": false,
+      "registrant_city": "Arlington",
+      "registrant_state": "VA",
+      "registrant_zip": "22202",
+      "registrant": {
+        "id": 6597,
+        "url": "https://lda.senate.gov/api/v1/registrants/6597/",
+        "house_registrant_id": 31701,
+        "name": "BOEING COMPANY",
+        "description": "Aerospace Manufacturing",
+        "address_1": "929 Long Bridge Drive",
+        "address_2": null,
+        "address_3": null,
+        "address_4": null,
+        "city": "ARLINGTON",
+        "state": "VA",
+        "state_display": "Virginia",
+        "zip": "22202",
+        "country": "US",
+        "country_display": "United States of America",
+        "ppb_country": "US",
+        "ppb_country_display": "United States of America",
+        "contact_name": "EMMANUEL TORMES",
+        "contact_telephone": "+1 703-465-3118",
+        "dt_updated": "2026-01-30T18:59:23.393549-05:00"
+      },
+      "client": {
+        "id": 108802,
+        "url": "https://lda.senate.gov/api/v1/clients/108802/",
+        "client_id": 12,
+        "name": "BOEING COMPANY",
+        "general_description": null,
+        "client_government_entity": false,
+        "client_self_select": true,
+        "state": "VA",
+        "state_display": "Virginia",
+        "country": "US",
+        "country_display": "United States of America",
+        "ppb_state": "VA",
+        "ppb_state_display": "Virginia",
+        "ppb_country": "US",
+        "ppb_country_display": "United States of America",
+        "effective_date": "2007-08-08"
+      },
+      "lobbying_activities": [
+        {
+          "general_issue_code": "ENV",
+          "general_issue_code_display": "Environment/Superfund",
+          "description": "H.R.4552 & S.2465 - Transportation, Housing and Urban Development, and Related Agencies Appropriations Act, 2026. FY27 Transportation, Housing and Urban Development, and Related Agencies appropriations. FY27 Agriculture, Rural Development, Food and Drug Administration, and Related Agencies Appropriations. Toxic Substances Control Act authorizations. Agriculture legislation with a nexus to aerospace issues. Clean air/CO2 emissions standards and related issues. Clean Water Act. Chemical manufacturing and use. Superfund and site remediation. Solid waste and recycling. Renewable energy, energy policy, and sustainable aviation fuel related issues.",
+          "foreign_entity_issues": "",
+          "lobbyists": [
+            {
+              "lobbyist": {
+                "id": 63048,
+                "prefix": null,
+                "prefix_display": null,
+                "first_name": "PETER",
+                "nickname": null,
+                "middle_name": null,
+                "last_name": "PAGANO",
+                "suffix": null,
+                "suffix_display": null
+              },
+              "covered_position": null,
+              "new": false
+            }
+          ],
+          "government_entities": [
+            {
+              "id": 33,
+              "name": "Energy, Dept of"
+            },
+            {
+              "id": 49,
+              "name": "Environmental Protection Agency (EPA)"
+            },
+            {
+              "id": 2,
+              "name": "HOUSE OF REPRESENTATIVES"
+            },
+            {
+              "id": 1,
+              "name": "SENATE"
+            },
+            {
+              "id": 40,
+              "name": "Transportation, Dept of (DOT)"
+            },
+            {
+              "id": 12,
+              "name": "White House Office"
+            }
+          ]
+        }
+      ],
+      "conviction_disclosures": [],
+      "foreign_entities": [],
+      "affiliated_organizations": []
+    },
+    {
+      "url": "https://lda.senate.gov/api/v1/filings/a934e791-d564-4fd3-8b78-041f8cfcf115/",
+      "filing_uuid": "a934e791-d564-4fd3-8b78-041f8cfcf115",
+      "filing_type": "RR",
+      "filing_type_display": "Registration",
+      "filing_year": 2026,
+      "filing_period": "first_quarter",
+      "filing_period_display": "1st Quarter (Jan 1 - Mar 31)",
+      "filing_document_url": "https://lda.senate.gov/filings/public/filing/a934e791-d564-4fd3-8b78-041f8cfcf115/print/",
+      "filing_document_content_type": "text/html",
+      "income": null,
+      "expenses": null,
+      "expenses_method": null,
+      "expenses_method_display": null,
+      "posted_by_name": "Bob Holmes",
+      "dt_posted": "2026-01-01T15:01:39-05:00",
+      "termination_date": null,
+      "registrant_country": "United States of America",
+      "registrant_ppb_country": null,
+      "registrant_address_1": "115 Elm Street SW",
+      "registrant_address_2": null,
+      "registrant_different_address": null,
+      "registrant_city": "Vienna",
+      "registrant_state": "VA",
+      "registrant_zip": "22180",
+      "registrant": {
+        "id": 61414,
+        "url": "https://lda.senate.gov/api/v1/registrants/61414/",
+        "house_registrant_id": 35398,
+        "name": "NEXXUS CONSULTING, LLC",
+        "description": "consulting firm",
+        "address_1": "115 Elm Street SW",
+        "address_2": null,
+        "address_3": null,
+        "address_4": null,
+        "city": "Vienna",
+        "state": "VA",
+        "state_display": "Virginia",
+        "zip": "22180",
+        "country": "US",
+        "country_display": "United States of America",
+        "ppb_country": "US",
+        "ppb_country_display": "United States of America",
+        "contact_name": "BOB HOLMES",
+        "contact_telephone": "+1 202-256-6566",
+        "dt_updated": "2026-06-29T17:23:41.311615-04:00"
+      },
+      "client": {
+        "id": 70355,
+        "url": "https://lda.senate.gov/api/v1/clients/70355/",
+        "client_id": 70355,
+        "name": "CITY OF SOMERTON (AZ)",
+        "general_description": "city government",
+        "client_government_entity": null,
+        "client_self_select": false,
+        "state": "AZ",
+        "state_display": "Arizona",
+        "country": "US",
+        "country_display": "United States of America",
+        "ppb_state": "AZ",
+        "ppb_state_display": "Arizona",
+        "ppb_country": "US",
+        "ppb_country_display": "United States of America",
+        "effective_date": "2026-01-01"
+      },
+      "lobbying_activities": [
+        {
+          "general_issue_code": "BUD",
+          "general_issue_code_display": "Budget/Appropriations",
+          "description": "transportation and infrastructure funding",
+          "foreign_entity_issues": null,
+          "lobbyists": [
+            {
+              "lobbyist": {
+                "id": 150273,
+                "prefix": null,
+                "prefix_display": null,
+                "first_name": "TRACEE",
+                "nickname": null,
+                "middle_name": null,
+                "last_name": "SUTTON",
+                "suffix": null,
+                "suffix_display": null
+              },
+              "covered_position": "Chief of Staff, Congressman Greg Stanton",
+              "new": true
+            }
+          ],
+          "government_entities": []
+        }
+      ],
+      "conviction_disclosures": [],
+      "foreign_entities": [],
+      "affiliated_organizations": []
+    }
+  ]
+}

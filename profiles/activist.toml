@@ -1,0 +1,43 @@
+name = "activist"
+description = "US 13D activist stakes only, low threshold, tuned to surface new entrants."
+
+# An activist 13D is a public declaration of intent to influence a company, which is a
+# stronger and rarer signal than the routine open-market buys and sells Form 4 produces
+# in volume every day. This profile trades Form 4's breadth for that: one form, one
+# event type, a threshold low enough that a newly-formed stake still clears it.
+
+# Deliberately low. A 13D is required at 5% ownership regardless of dollar size, so a
+# small-cap activist stake can be a meaningful position at well under the $5M default --
+# and a 13D is rare enough on its own (a few hundred a year, not thousands) that a low
+# threshold does not flood the digest the way it would for Form 4 volume.
+threshold_usd = 500000.0
+near_threshold_usd = 400000.0
+instant_usd = 25000000.0
+
+[sources]
+# Only the SC 13D/G feed. Form 4, the vendor congressional-trading feeds, and every
+# other jurisdiction are switched off so a 13D does not get buried under insider-buy
+# volume from the same digest.
+enabled = ["sec_13dg"]
+
+[filters]
+jurisdictions = ["US"]
+
+# 13D only, not 13G: 13G is the passive-investor filing (no intent to influence), and
+# mixing it in here would dilute the one signal this profile exists to isolate. Widen to
+# ["activist_13d", "passive_13g"] if 13G's context is wanted alongside it.
+event_types = ["activist_13d"]
+
+# No relationship-role filter: 13D filers are entities (funds, individuals building a
+# stake), not company insiders, so filer_role is rarely populated and role-based
+# filtering does not apply the way it does for Form 4.
+filer_roles = []
+exclude_filer_roles = []
+
+# Note on "first-time activist filers": this profile's job is to narrow *which sources
+# and event types* run; whether a given 13D is a first-time filer is a per-event fact
+# (`NormalizedEvent.is_first_time_filer`) computed by enrichment against filer history,
+# not something a static filter list can express. The daily digest already highlights
+# first-time filers as their own section -- combined with this profile's narrow event
+# type, that section is effectively "first-time activist stakes" with no further
+# configuration needed.

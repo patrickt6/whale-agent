@@ -1,0 +1,8 @@
+{
+  "symbol": "AGO",
+  "historical": [
+    {"date": "2026-07-24", "open": 82.10, "high": 83.40, "low": 81.90, "close": 83.05, "adjClose": 83.05, "volume": 412300},
+    {"date": "2026-07-23", "open": 81.55, "high": 82.30, "low": 81.20, "close": 82.10, "adjClose": 82.10, "volume": 388100},
+    {"date": "2026-07-22", "open": 80.90, "high": 81.80, "low": 80.75, "close": 81.60, "adjClose": 81.60, "volume": 355900}
+  ]
+}

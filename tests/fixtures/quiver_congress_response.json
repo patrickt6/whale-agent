@@ -1,0 +1,13 @@
+[
+  {
+    "Representative": "Nancy Example",
+    "ReportDate": "2026-07-20",
+    "TransactionDate": "2026-07-01",
+    "Ticker": "MSFT",
+    "Company": "Microsoft Corporation",
+    "Transaction": "Purchase",
+    "Amount": "$5,000,001 - $25,000,000",
+    "House": "Representatives",
+    "Range": "$5,000,001 - $25,000,000"
+  }
+]
