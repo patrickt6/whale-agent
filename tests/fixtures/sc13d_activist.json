@@ -1,0 +1,12 @@
+{
+  "form": "SC 13D",
+  "issuer_name": "Target Industries Inc",
+  "issuer_cusip": "88160R101",
+  "filer_name": "Example Activist Partners",
+  "filer_cik": "0009990001",
+  "percent_of_class": 6.2,
+  "shares_owned": 9000000,
+  "shares_outstanding": 145000000,
+  "price": 15.75,
+  "filing_date": "2026-07-25"
+}

@@ -1,0 +1,111 @@
+{
+  "count": 53822,
+  "next": null,
+  "previous": "x",
+  "results": [
+    {
+      "url": "https://lda.senate.gov/api/v1/filings/8e855fc5-b019-4c8c-b9e9-3938213917eb/",
+      "filing_uuid": "8e855fc5-b019-4c8c-b9e9-3938213917eb",
+      "filing_type": "Q1",
+      "filing_type_display": "1st Quarter - Report",
+      "filing_year": 2026,
+      "filing_period": "first_quarter",
+      "filing_period_display": "1st Quarter (Jan 1 - Mar 31)",
+      "filing_document_url": "https://lda.senate.gov/filings/public/filing/8e855fc5-b019-4c8c-b9e9-3938213917eb/print/",
+      "filing_document_content_type": "text/html",
+      "income": "31700.00",
+      "expenses": null,
+      "expenses_method": null,
+      "expenses_method_display": null,
+      "posted_by_name": "MARSHALL A. BRACHMAN",
+      "dt_posted": "2026-04-02T22:14:18-04:00",
+      "termination_date": null,
+      "registrant_country": "United States of America",
+      "registrant_ppb_country": null,
+      "registrant_address_1": "634 A Street, NE",
+      "registrant_address_2": null,
+      "registrant_different_address": false,
+      "registrant_city": "Washington",
+      "registrant_state": "DC",
+      "registrant_zip": "20002",
+      "registrant": {
+        "id": 6848,
+        "url": "https://lda.senate.gov/api/v1/registrants/6848/",
+        "house_registrant_id": 31603,
+        "name": "MARSHALL BRACHMAN",
+        "description": "lobbyist",
+        "address_1": "634 A Street, NE",
+        "address_2": null,
+        "address_3": null,
+        "address_4": null,
+        "city": "Washington",
+        "state": "DC",
+        "state_display": "District of Columbia",
+        "zip": "20002",
+        "country": "US",
+        "country_display": "United States of America",
+        "ppb_country": "US",
+        "ppb_country_display": "United States of America",
+        "contact_name": "MARSHALL A. BRACHMAN",
+        "contact_telephone": "+1 202-365-1018",
+        "dt_updated": "2026-07-03T15:41:29.794184-04:00"
+      },
+      "client": {
+        "id": 109480,
+        "url": "https://lda.senate.gov/api/v1/clients/109480/",
+        "client_id": 87,
+        "name": "LOCKHEED MARTIN AERONAUTIC SECTOR",
+        "general_description": null,
+        "client_government_entity": false,
+        "client_self_select": null,
+        "state": "TX",
+        "state_display": "Texas",
+        "country": "US",
+        "country_display": "United States of America",
+        "ppb_state": null,
+        "ppb_state_display": null,
+        "ppb_country": "US",
+        "ppb_country_display": "United States of America",
+        "effective_date": "2007-07-22"
+      },
+      "lobbying_activities": [
+        {
+          "general_issue_code": "DEF",
+          "general_issue_code_display": "Defense",
+          "description": "Armed Services Committee: tactical aircraft issues, space based radar;GP;C-130J;foreign military sales; support helicopter funding; support space hardening; JASSM funding; support JADC2; monitor for defense spectrum issues",
+          "foreign_entity_issues": "",
+          "lobbyists": [
+            {
+              "lobbyist": {
+                "id": 2052,
+                "prefix": "mr",
+                "prefix_display": "MR.",
+                "first_name": "MARSHALL",
+                "nickname": null,
+                "middle_name": "A",
+                "last_name": "BRACHMAN",
+                "suffix": null,
+                "suffix_display": null
+              },
+              "covered_position": null,
+              "new": false
+            }
+          ],
+          "government_entities": [
+            {
+              "id": 2,
+              "name": "HOUSE OF REPRESENTATIVES"
+            },
+            {
+              "id": 1,
+              "name": "SENATE"
+            }
+          ]
+        }
+      ],
+      "conviction_disclosures": [],
+      "foreign_entities": [],
+      "affiliated_organizations": []
+    }
+  ]
+}

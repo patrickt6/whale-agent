@@ -1,0 +1,51 @@
+__pycache__/
+*.pyc
+.venv/
+.venv.nosync/
+*.db
+.env
+# Backups too. `.env` alone was not enough: a `.env.backup-<timestamp>` file was tracked
+# in every commit until 2026-08-02 and had to be stripped from history with filter-repo
+# before the first push. The glob is what stops the next one.
+.env.*
+!.env.example
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.DS_Store
+deploy/articles/
+
+# Operator records written at runtime, not source.
+sent_digests.jsonl
+quarantine.jsonl
+*.jsonl
+
+# Generated weekly pages: regenerated from the corpus before every deploy, so committing
+# them would be committing output rather than source.
+deploy/public/*.html
+# One-off corpus backups taken before a migration.
+whale.db.bak-*
+
+# Generated each run and republished by wrangler, so the repo does not carry them.
+out/
+articles/
+deploy/public/
+deploy/.wrangler/
+
+# Hand-answered LLM prompts and replies for the manual provider. Working state, and
+# regenerated from the corpus whenever a render runs.
+spool/
+
+# Thesis handoff between the render and send steps, never published.
+.weekly-cache/
+deploy/.weekly-cache/
+logs/
+
+# Wrangler state for any Cloudflare project in this repo (account id and name).
+.wrangler/
+# The corpus and SQLite side files (WAL, journal), wherever they sit.
+whale.db*
+# Private keys and certificates.
+*.pem
+*.key

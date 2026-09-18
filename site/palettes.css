@@ -1,0 +1,161 @@
+/* Whale Agent site: colour palette experiments.
+   Each block overrides the :root colour custom properties defined in
+   style.css for one [data-palette] value. Selector uses `html[data-palette=...]`
+   (specificity 0,1,1) so it always beats the plain `:root` defaults in
+   style.css (specificity 0,1,0) regardless of <link> order.
+
+   Derived tokens (--fg-dim, --lift, --rule, --underline, --underline-soft,
+   --lift-hover, --cta-bg, --cta-bg-hover, --fg-faint, --fg-excluded) are the
+   same alpha tint of --fg used in style.css defaults, unless a literal colour
+   is called for (see "whale-deep" lift boxes below). This keeps every
+   palette internally legible: text always tints toward --fg, so boxes stay
+   readable whichever direction the palette runs (light-on-dark or
+   dark-on-light).
+
+   Contrast ratios (WCAG relative luminance, computed in
+   /private/tmp/.../scratchpad/palettes_final.py): see report for full table.
+*/
+
+html[data-palette="teal"] {
+  --bg: #006a62;
+  --bg-deep: #003f3a;
+  --fg: rgb(242, 242, 242);
+  --fg-dim: rgba(242, 242, 242, 0.78);
+  --lift: rgba(242, 242, 242, 0.2);
+  --lift-soft: rgba(242, 242, 242, 0.1);
+  --rule: rgba(242, 242, 242, 0.35);
+  --underline: rgba(242, 242, 242, 0.4);
+  --underline-soft: rgba(242, 242, 242, 0.25);
+  --lift-hover: rgba(242, 242, 242, 0.3);
+  --cta-bg: rgba(242, 242, 242, 0.98);
+  --cta-bg-hover: rgb(242, 242, 242);
+  --fg-faint: rgba(242, 242, 242, 0.55);
+  --fg-excluded: rgba(242, 242, 242, 0.62);
+  --accent: #7ee0c3;
+  --accent-rgb: 126, 224, 195;
+  --icon-filter: brightness(0) invert(.95);
+}
+
+/* whale-deep: flood = CLI whale outline blue rgb(46,86,150), deep insets =
+   eye navy rgb(20,28,45). Lighter boxes use the CLI body blue
+   rgb(111,160,230) literally (per spec), not an --fg tint, so they read as
+   a distinct lighter blue rather than a translucent white film.
+   Accent (#6fa0e6, the body blue) is an inference: the spec did not name an
+   accent for this palette. */
+html[data-palette="whale-deep"] {
+  --bg: #2e5696;
+  --bg-deep: #141c2d;
+  --fg: rgb(242, 242, 242);
+  --fg-dim: rgba(242, 242, 242, 0.78);
+  --lift: rgba(111, 160, 230, 0.35);
+  --lift-soft: rgba(111, 160, 230, 0.18);
+  --rule: rgba(242, 242, 242, 0.35);
+  --underline: rgba(242, 242, 242, 0.4);
+  --underline-soft: rgba(242, 242, 242, 0.25);
+  --lift-hover: rgba(242, 242, 242, 0.3);
+  --cta-bg: rgba(242, 242, 242, 0.98);
+  --cta-bg-hover: rgb(242, 242, 242);
+  --fg-faint: rgba(242, 242, 242, 0.55);
+  --fg-excluded: rgba(242, 242, 242, 0.62);
+  --accent: #6fa0e6;
+  --accent-rgb: 111, 160, 230;
+  --icon-filter: brightness(0) invert(.95);
+}
+
+/* whale-light: flood = CLI body blue #6fa0e6, text = eye navy #141c2d (both
+   pinned by spec). --bg-deep is INVERTED from the dark palettes: it is
+   lighter (#dce6f7) than the flood, not darker. This is an inference, not
+   from spec: navy --fg text is drawn on --bg-deep surfaces elsewhere in
+   style.css (pre.term, .signup-sec, .explain, tr.note-row, .card.warn), and
+   a darker inset there would put navy text on a near-navy box. Accent
+   (#2e5696, the outline blue) is also an inference. */
+html[data-palette="whale-light"] {
+  --bg: #6fa0e6;
+  --bg-deep: #dce6f7;
+  --fg: rgb(20, 28, 45);
+  --fg-dim: rgba(20, 28, 45, 0.78);
+  --lift: rgba(20, 28, 45, 0.2);
+  --lift-soft: rgba(20, 28, 45, 0.1);
+  --rule: rgba(20, 28, 45, 0.35);
+  --underline: rgba(20, 28, 45, 0.4);
+  --underline-soft: rgba(20, 28, 45, 0.25);
+  --lift-hover: rgba(20, 28, 45, 0.3);
+  --cta-bg: rgba(20, 28, 45, 0.98);
+  --cta-bg-hover: rgb(20, 28, 45);
+  --fg-faint: rgba(20, 28, 45, 0.55);
+  --fg-excluded: rgba(20, 28, 45, 0.62);
+  --accent: #2e5696;
+  --accent-rgb: 46, 86, 150;
+  --icon-filter: brightness(0) invert(.08);
+}
+
+/* abyss: near-black navy flood #141c2d, #6fa0e6 accent (per spec).
+   --bg-deep is a darker step of the same navy (#0a0e16). */
+html[data-palette="abyss"] {
+  --bg: #141c2d;
+  --bg-deep: #0a0e16;
+  --fg: rgb(242, 242, 242);
+  --fg-dim: rgba(242, 242, 242, 0.78);
+  --lift: rgba(242, 242, 242, 0.2);
+  --lift-soft: rgba(242, 242, 242, 0.1);
+  --rule: rgba(242, 242, 242, 0.35);
+  --underline: rgba(242, 242, 242, 0.4);
+  --underline-soft: rgba(242, 242, 242, 0.25);
+  --lift-hover: rgba(242, 242, 242, 0.3);
+  --cta-bg: rgba(242, 242, 242, 0.98);
+  --cta-bg-hover: rgb(242, 242, 242);
+  --fg-faint: rgba(242, 242, 242, 0.55);
+  --fg-excluded: rgba(242, 242, 242, 0.62);
+  --accent: #6fa0e6;
+  --accent-rgb: 111, 160, 230;
+  --icon-filter: brightness(0) invert(.95);
+}
+
+/* electric-teal: brightest saturated teal (hue ~172, 95% sat) that still
+   clears 4.5:1 for #f2f2f2 body text. Found by search over lightness; see
+   report for the exact number (4.57:1). Muted text (--fg-dim, .78 alpha)
+   comes out to 3.40:1, below AA, because a blended tint between --fg and
+   --bg can never exceed the main-text ratio (see report). Kept as-is: the
+   task's bar is body text >=4.5:1, and darkening further to fix muted text
+   would cost the "Hermes-level saturation" this palette is for. */
+html[data-palette="electric-teal"] {
+  --bg: #037c6c;
+  --bg-deep: #024940;
+  --fg: rgb(242, 242, 242);
+  --fg-dim: rgba(242, 242, 242, 0.78);
+  --lift: rgba(242, 242, 242, 0.2);
+  --lift-soft: rgba(242, 242, 242, 0.1);
+  --rule: rgba(242, 242, 242, 0.35);
+  --underline: rgba(242, 242, 242, 0.4);
+  --underline-soft: rgba(242, 242, 242, 0.25);
+  --lift-hover: rgba(242, 242, 242, 0.3);
+  --cta-bg: rgba(242, 242, 242, 0.98);
+  --cta-bg-hover: rgb(242, 242, 242);
+  --fg-faint: rgba(242, 242, 242, 0.55);
+  --fg-excluded: rgba(242, 242, 242, 0.62);
+  --accent: #7ee0c3;
+  --accent-rgb: 126, 224, 195;
+  --icon-filter: brightness(0) invert(.95);
+}
+
+/* deep-sea: dark teal-to-blue, #0b4f6c per spec example. Comfortably clears
+   4.5:1 for both main and muted text. */
+html[data-palette="deep-sea"] {
+  --bg: #0b4f6c;
+  --bg-deep: #062f40;
+  --fg: rgb(242, 242, 242);
+  --fg-dim: rgba(242, 242, 242, 0.78);
+  --lift: rgba(242, 242, 242, 0.2);
+  --lift-soft: rgba(242, 242, 242, 0.1);
+  --rule: rgba(242, 242, 242, 0.35);
+  --underline: rgba(242, 242, 242, 0.4);
+  --underline-soft: rgba(242, 242, 242, 0.25);
+  --lift-hover: rgba(242, 242, 242, 0.3);
+  --cta-bg: rgba(242, 242, 242, 0.98);
+  --cta-bg-hover: rgb(242, 242, 242);
+  --fg-faint: rgba(242, 242, 242, 0.55);
+  --fg-excluded: rgba(242, 242, 242, 0.62);
+  --accent: #7ee0c3;
+  --accent-rgb: 126, 224, 195;
+  --icon-filter: brightness(0) invert(.95);
+}

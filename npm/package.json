@@ -1,0 +1,20 @@
+{
+  "name": "whale-agent-cli",
+  "version": "0.1.0",
+  "description": "Run Whale Agent (daily digest of large SEC disclosures) through uv or pipx.",
+  "license": "MIT",
+  "author": "Patrick Taylor",
+  "homepage": "https://github.com/patrickt6/whale-agent",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrickt6/whale-agent.git",
+    "directory": "npm"
+  },
+  "bin": {
+    "whale": "bin/whale.js",
+    "whale-agent-cli": "bin/whale.js"
+  },
+  "files": ["bin/whale.js", "README.md"],
+  "engines": { "node": ">=18" },
+  "keywords": ["sec-filings", "form-4", "13d", "insider-trading", "cli"]
+}

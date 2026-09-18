@@ -1,0 +1,8 @@
+{
+  "_comment": "SCHEMA-DERIVED, NOT A REAL RESPONSE. Built from the 'Senate Stock' schema and its example for GET /api/congress/recent-trades in https://api.unusualwhales.com/api/openapi, opened 2026-09-17. Values are invented for tests.",
+  "data": [
+    {"amounts": "$15,001 - $50,000", "filed_at_date": "2026-09-12", "is_active": true, "issuer": "spouse", "member_type": "house", "name": "Jane Member", "notes": "", "politician_id": "18f9fc95-4661-444e-99f5-99d3778e0c31", "reporter": "Jane M.", "ticker": "MSFT", "transaction_date": "2026-09-01", "txn_type": "Buy"},
+    {"amounts": "$1,000,001 - $5,000,000", "filed_at_date": "2026-09-13", "is_active": true, "issuer": "joint", "member_type": "senate", "name": "John Senator", "notes": "", "politician_id": "5b1e3f4a-2d3c-4e5f-8a6b-7c8d9e0f1a2b", "reporter": "John S.", "ticker": "NVDA", "transaction_date": "2026-09-02", "txn_type": "Sale (Partial)"},
+    {"amounts": "", "filed_at_date": "2026-09-13", "is_active": false, "issuer": "self", "member_type": "house", "name": "", "notes": "", "politician_id": "", "reporter": "Someone", "ticker": "AAPL", "transaction_date": "2026-09-03", "txn_type": "Exchange"}
+  ]
+}

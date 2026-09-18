@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>Whale Agent, 2026-07-26</title>
+<!--[if mso]>
+<style>
+  /* Outlook renders through the Word engine and ignores the system-font stacks
+     above, falling back to Times. Naming a face it actually has avoids that. */
+  body, table, td, div, span, a { font-family: 'Segoe UI', Arial, sans-serif !important; }
+</style>
+<![endif]-->
+<style>
+  /* Nothing structural lives here: many clients strip this block entirely, and the
+     layout is fully inlined so they lose only the phone breakpoint. */
+  body { margin:0; padding:0; width:100% !important; }
+  @media only screen and (max-width:600px) {
+    .shell { width:100% !important; }
+    /* A 19px figure cannot sit beside prose on a phone, so the amount moves above
+       the record rather than wrapping mid-number. */
+    .stack, .stack-amount { display:block !important; width:100% !important;
+                             text-align:left !important; }
+    .stack-amount { padding:10px 0 0 0 !important; }
+    .stat div:first-child { font-size:20px !important; }
+    .outer { padding:0 !important; }
+    .wordmark { font-size:19px !important; }
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#E8EEF7;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+       style="background:#E8EEF7;">
+  <tr><td align="center" class="outer" style="background:#E8EEF7;padding:24px 8px;">
+    <table role="presentation" class="shell" width="640" cellpadding="0" cellspacing="0"
+           border="0" style="width:640px;max-width:640px;background:#FFFFFF;
+           border:1px solid #D5DEEB;">
+      
+<tr><td style="background:#2E5696;padding:22px 28px 20px 28px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+    <td valign="middle" width="52" style="background:#2E5696;padding-right:12px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td></tr><tr><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td></tr><tr><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td></tr><tr><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td></tr><tr><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#FFFFFF;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td><td width="4" height="4" style="width:4px;height:4px;font-size:0;line-height:0;background:#2E5696;">&nbsp;</td></tr></table></td>
+    <td valign="middle" class="wordmark" style="background:#2E5696;font-family:'Arial Narrow','Roboto Condensed','Helvetica Neue Condensed','Franklin Gothic Medium','Helvetica Neue',Arial,sans-serif;font-size:24px;line-height:1;
+               font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#FFFFFF;">Whale Agent</td>
+    <td valign="middle" align="right" style="background:#2E5696;font-family:'Arial Narrow','Roboto Condensed','Helvetica Neue Condensed','Franklin Gothic Medium','Helvetica Neue',Arial,sans-serif;font-size:12px;
+               letter-spacing:.12em;text-transform:uppercase;color:#FFFFFF;white-space:nowrap;">2026-07-26</td>
+  </tr></table>
+  <div style="height:1px;background:#FFFFFF;opacity:.35;margin:14px 0 10px 0;font-size:0;line-height:0;">&nbsp;</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+    <td style="background:#2E5696;font-family:'Arial Narrow','Roboto Condensed','Helvetica Neue Condensed','Franklin Gothic Medium','Helvetica Neue',Arial,sans-serif;font-size:13px;letter-spacing:.14em;
+               text-transform:uppercase;font-weight:700;color:#FFFFFF;">Daily brief</td>
+    <td align="right" style="background:#2E5696;font-family:'Helvetica Neue',Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-size:12px;color:#FFFFFF;">Disclosed positions above $5M</td>
+  </tr></table>
+</td></tr>
+<tr><td style="background:#FFFFFF;padding:6px 28px 0 28px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+         style="border-bottom:1px solid #D5DEEB;"><tr><td class="stat" valign="top" width="33%" style="background:#FFFFFF;padding:16px 0 16px 0;">
+        <div style="background:#FFFFFF;font-family:'Helvetica Neue',Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-variant-numeric:tabular-nums lining-nums;font-size:26px;line-height:1.1;font-weight:700;color:#141C2D;white-space:nowrap;">1</div>
+        <div style="background:#FFFFFF;font-family:'Arial Narrow','Roboto Condensed','Helvetica Neue Condensed','Franklin Gothic Medium','Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#66758C;padding-top:4px;">Disclosure</div>
+      </td><td class="stat" valign="top" width="33%" style="background:#FFFFFF;padding:16px 0 16px 16px;border-left:1px solid #D5DEEB;">
+        <div style="background:#FFFFFF;font-family:'Helvetica Neue',Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-variant-numeric:tabular-nums lining-nums;font-size:26px;line-height:1.1;font-weight:700;color:#141C2D;white-space:nowrap;">$7.5M</div>
+        <div style="background:#FFFFFF;font-family:'Arial Narrow','Roboto Condensed','Helvetica Neue Condensed','Franklin Gothic Medium','Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#66758C;padding-top:4px;">Total disclosed</div>
+      </td><td class="stat" valign="top" width="33%" style="background:#FFFFFF;padding:16px 0 16px 16px;border-left:1px solid #D5DEEB;">
+        <div style="background:#FFFFFF;font-family:'Helvetica Neue',Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-variant-numeric:tabular-nums lining-nums;font-size:26px;line-height:1.1;font-weight:700;color:#141C2D;white-space:nowrap;">$7.5M</div>
+        <div style="background:#FFFFFF;font-family:'Arial Narrow','Roboto Condensed','Helvetica Neue Condensed','Franklin Gothic Medium','Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#66758C;padding-top:4px;">Largest</div>
+      </td></tr></table>
+</td></tr>
+<tr><td style="background:#FFFFFF;padding:26px 28px 4px 28px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+    <td style="background:#FFFFFF;font-family:'Arial Narrow','Roboto Condensed','Helvetica Neue Condensed','Franklin Gothic Medium','Helvetica Neue',Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:.14em;
+               text-transform:uppercase;color:#2E5696;border-bottom:1px solid #2E5696;padding-bottom:6px;">
+      Notable this period
+    </td>
+  </tr></table>
+</td></tr>
+<tr><td style="background:#FFFFFF;padding:10px 28px 12px 28px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+         style="border:1px solid #D5DEEB;border-left:3px solid #008456;">
+    <tr><td style="background:#FFFFFF;padding:16px 18px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td valign="top" class="stack" style="background:#FFFFFF;font-family:'Helvetica Neue',Helvetica,Arial,'Segoe UI',Roboto,sans-serif;
+                   font-size:16px;line-height:1.35;color:#141C2D;font-weight:700;">
+          Jane Q. Example
+          <div style="background:#FFFFFF;padding-top:7px;font-weight:400;">
+            <span style="display:inline-block;background:#008456;color:#FFFFFE;font-family:'Arial Narrow','Roboto Condensed','Helvetica Neue Condensed','Franklin Gothic Medium','Helvetica Neue',Arial,sans-serif;
+                  font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+                  padding:3px 7px;">Open-market buy</span>
+            <span style="font-family:'Helvetica Neue',Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-size:14px;color:#141C2D;background:#FFFFFF;">&nbsp;Acme Micro Corp</span>
+          </div>
+        </td>
+        <td valign="top" align="right" width="150" class="stack-amount"
+            style="background:#FFFFFF;">
+          <div style="background:#FFFFFF;font-family:'Helvetica Neue',Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-variant-numeric:tabular-nums lining-nums;font-size:24px;line-height:1.1;
+                      font-weight:700;color:#008456;white-space:nowrap;"
+            >$7.5M</div>
+          <div style="background:#FFFFFF;font-family:'Helvetica Neue',Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-size:11px;
+                      color:#66758C;padding-top:4px;line-height:1.4;"
+            >Stated in the filing</div>
+        </td>
+      </tr>
+    </table>
+    <div style="background:#FFFFFF;font-family:'Helvetica Neue',Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-size:12px;color:#66758C;
+                padding-top:10px;">United States · filed 2026-07-24 · 0-day lag</div>
+    
+      <div style="background:#FFFFFF;font-family:'Helvetica Neue',Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-size:13px;line-height:1.55;
+                  color:#3A4A63;padding-top:8px;">
+        <span style="font-family:'Arial Narrow','Roboto Condensed','Helvetica Neue Condensed','Franklin Gothic Medium','Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+                     font-weight:700;color:#141C2D;">Why it matters:</span>&nbsp; clears the $5M threshold, with nothing else to distinguish it.
+      </div>
+    </td></tr>
+  </table>
+</td></tr>
+<tr><td style="background:#FFFFFF;padding:22px 28px 26px 28px;">
+  <div style="height:1px;background:#D5DEEB;font-size:0;line-height:0;">&nbsp;</div>
+  <div style="background:#FFFFFF;font-family:'Arial Narrow','Roboto Condensed','Helvetica Neue Condensed','Franklin Gothic Medium','Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;
+              text-transform:uppercase;color:#2E5696;padding:14px 0 6px 0;">On provenance</div>
+  <div style="background:#FFFFFF;font-family:'Helvetica Neue',Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-size:12px;line-height:1.6;
+              color:#3A4A63;">
+    Every figure here comes from a disclosure field or is computed from one, and the
+    line under each amount says which. A language model may write the sentences but never
+    the figures. Any sentence with a figure that does not trace back to a filing is
+    dropped before sending.
+  </div>
+  <div style="background:#FFFFFF;font-family:'Helvetica Neue',Helvetica,Arial,'Segoe UI',Roboto,sans-serif;font-size:12px;line-height:1.6;
+              color:#3A4A63;padding-top:10px;">
+    Routine, calendar-driven trades are marked. This is an awareness tool, not investment advice.
+  </div>
+  <div style="background:#FFFFFF;font-family:'Arial Narrow','Roboto Condensed','Helvetica Neue Condensed','Franklin Gothic Medium','Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.12em;
+              text-transform:uppercase;color:#66758C;padding-top:16px;">
+    Whale Agent by Patrick Taylor
+  </div>
+</td></tr>
+    </table>
+  </td></tr>
+</table>
+</body></html>

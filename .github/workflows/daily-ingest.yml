@@ -1,0 +1,64 @@
+name: daily-ingest
+
+# The job that makes the corpus grow. It sends nothing: `--dry-run` ingests and stores
+# without delivering, so exactly one email per week leaves this system, on Monday.
+# 09:00 UTC sits well before the Monday report, so the weekly reads a corpus that
+# includes that morning's filings rather than yesterday's.
+on:
+  schedule:
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write # required to upload the corpus asset to the release
+
+concurrency:
+  group: corpus
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+      JAPAN_EDINET_API_KEY: ${{ secrets.JAPAN_EDINET_API_KEY }}
+      WHALE_SEC_USER_AGENT: ${{ secrets.WHALE_SEC_USER_AGENT }}
+      WHALE_ENABLE_FMP: "1"
+      WHALE_EMAIL_PROVIDER: none
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install -e .
+
+      - name: Download the corpus
+        run: scripts/corpus.sh download
+
+      - name: Ingest
+        run: python -m whale_agent.jobs.digest_daily --dry-run
+
+      # `collect_events` deliberately swallows a per-source failure into a coverage
+      # note so one broken adapter never takes the whole digest down -- which also
+      # means this job would otherwise exit 0 even with every core source failing on
+      # every run. sec_form4 and sec_13dg both did exactly that for a week (403s from
+      # a bad SEC User-Agent) before anyone noticed. `--gate` uses the same
+      # EXPECTED_MAX_AGE_HOURS grace the weekly send already relies on (36h, so one
+      # missed run does not page anybody), and fails the job once a CORE_SOURCES
+      # source has been down long enough to matter. Runs before the upload so a
+      # failure here still leaves time for the corpus step below to run regardless.
+      - name: Watchdog gate (fail on a stale core source)
+        run: python -m whale_agent.jobs.watchdog --gate
+
+      # Last, always: a crashed ingest -- or a failed watchdog gate above -- leaves the
+      # previous good corpus in place rather than replacing it with a half-written one,
+      # and `if: always()` means the corpus still gets uploaded even though the job as
+      # a whole reports failure.
+      - name: Upload the corpus
+        if: always()
+        run: scripts/corpus.sh upload

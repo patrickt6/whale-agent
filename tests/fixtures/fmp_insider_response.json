@@ -1,0 +1,34 @@
+[
+  {
+    "symbol": "AGO",
+    "filingDate": "2026-07-25 16:31:02",
+    "transactionDate": "2026-07-24",
+    "reportingCik": "0001234567",
+    "companyCik": "0001273813",
+    "companyName": "Assured Guaranty Ltd",
+    "transactionType": "P-Purchase",
+    "securitiesOwned": 148200,
+    "reportingName": "Sample Dana K",
+    "typeOfOwner": "officer: Chief Executive Officer",
+    "securitiesTransacted": 65000,
+    "price": 83.05,
+    "securityName": "Common Shares",
+    "url": "https://www.sec.gov/Archives/edgar/data/1273813/000112760226012345/form4.xml"
+  },
+  {
+    "symbol": "AGO",
+    "filingDate": "2026-07-25 16:35:11",
+    "transactionDate": "2026-07-24",
+    "reportingCik": "0007654321",
+    "companyCik": "0001273813",
+    "companyName": "Assured Guaranty Ltd",
+    "transactionType": "S-Sale",
+    "securitiesOwned": 22000,
+    "reportingName": "Placeholder Riley B",
+    "typeOfOwner": "officer: Chief Financial Officer",
+    "securitiesTransacted": 4000,
+    "price": 82.90,
+    "securityName": "Common Shares",
+    "url": "https://www.sec.gov/Archives/edgar/data/1273813/000112760226012346/form4.xml"
+  }
+]

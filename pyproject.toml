@@ -1,0 +1,133 @@
+[project]
+name = "whale-agent"
+version = "0.1.0"
+description = "Ranked daily and weekly digest of large public disclosures (SEC Form 4, 13D/G, 13F and more), delivered by email."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Patrick Taylor" }]
+keywords = [
+    "sec-filings",
+    "form-4",
+    "13d",
+    "insider-trading",
+    "disclosures",
+    "finance",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Operating System :: OS Independent",
+    # No "License :: OSI Approved" classifier: PEP 639 supersedes those with the SPDX
+    # `license` expression above, and setuptools now hard-errors if both are present.
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Financial",
+]
+dependencies = [
+    "pydantic>=2.7",
+    "edgartools>=5.0",
+    "httpx>=0.27",          # every vendor/jurisdiction adapter and delivery channel
+    "beautifulsoup4>=4.12",  # Dataroma is HTML-only, no API
+]
+
+[project.urls]
+Homepage = "https://github.com/patrickt6/whale-agent"
+Issues = "https://github.com/patrickt6/whale-agent/issues"
+Source = "https://github.com/patrickt6/whale-agent"
+Documentation = "https://github.com/patrickt6/whale-agent#readme"
+Changelog = "https://github.com/patrickt6/whale-agent/releases"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6", "mypy>=1.11"]
+
+[project.scripts]
+whale = "whale_agent.cli.main:main"
+whale-digest = "whale_agent.jobs.digest_daily:main"
+whale-weekly = "whale_agent.jobs.digest_weekly:main"
+whale-watchdog = "whale_agent.jobs.watchdog:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+whale_agent = ["py.typed", "demo_data/*.xml"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 95
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+# UP042 wants `class X(str, Enum)` rewritten to `StrEnum`. Declined deliberately: the two
+# differ in what `str(member)` returns, and these enums are interpolated into rendered
+# digest text, so the rewrite is an output change wearing a lint fix's clothes.
+ignore = ["UP042"]
+
+# The render modules hold literal HTML and CSS. Re-wrapping those lines would change the
+# whitespace inside the markup they emit, which the byte-for-byte determinism tests in
+# tests/test_determinism.py would (correctly) fail on. The limit is relaxed where the long
+# lines are markup, and enforced everywhere else.
+[tool.ruff.lint.per-file-ignores]
+"src/whale_agent/publishing/*.py" = ["E501"]
+"src/whale_agent/summarization/render_html.py" = ["E501"]
+"src/whale_agent/summarization/render_weekly_html.py" = ["E501"]
+"src/whale_agent/summarization/issue.py" = ["E501"]
+# These two hold verbatim EDGAR full-index lines as parser fixtures. The columns are
+# fixed-width and the parser is tested against them byte for byte, so re-wrapping them
+# to fit the line limit would change what is being tested.
+"tests/test_fund_watchlist.py" = ["E501"]
+"tests/test_resale_watch.py" = ["E501"]
+
+[tool.ruff.format]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+warn_unused_ignores = true
+
+# Pre-existing narrowing issues in these modules (Any-typed values crossing into
+# stricter APIs, mostly from third-party responses) predate the mypy rollout.
+# Ignored per-module rather than loosening the global config or touching src/.
+[[tool.mypy.overrides]]
+module = [
+    "whale_agent.ingestion.japan_edinet",
+    "whale_agent.ingestion.dataroma",
+    "whale_agent.ingestion.gov.lobbying",
+    "whale_agent.enrichment.macro",
+    "whale_agent.summarization.thesis",
+    "whale_agent.jobs.verify_sources",
+    "whale_agent.jobs.pipeline",
+]
+ignore_errors = true
+
+# Modules that arrived from the line of development that had no mypy configuration at
+# all, so they were never type-checked as they were written. The errors are real but
+# pre-existing, and they are concentrated: 21 of them are one pattern in
+# position_history, a **dict[str, str] splat into a typed dataclass, and the rest are
+# Optional-narrowing on date fields. Listed here so the gate is honest about what it is
+# not checking, rather than left to fail the build or fixed in a hurry underneath a
+# release. Each should come off this list with its own change and its own tests.
+[[tool.mypy.overrides]]
+module = [
+    "whale_agent.ingestion.position_history",
+    "whale_agent.ingestion.fund_watchlist",
+    "whale_agent.ingestion.resale_watch",
+    "whale_agent.ingestion.crypto_arkham",
+    "whale_agent.publishing.tracked_filings_html",
+    "whale_agent.jobs.digest_weekly",
+]
+ignore_errors = true
+

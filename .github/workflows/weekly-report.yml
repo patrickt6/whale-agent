@@ -1,0 +1,107 @@
+name: weekly-report
+
+# Four crons, all redundant. On 2026-08-03 GitHub started the 11:00 UTC cron at 13:43,
+# and the daily ingest ran three and a half hours behind its own. Scheduled runs on a
+# low-activity private repo are late by hours, not minutes, so no single cron time can be
+# relied on.
+#
+# The gate no longer asks what time it is. It asks whether this week still owes a report,
+# so the first of these that actually executes does the work and the rest find it done.
+# That also retires DST as a special case: every one of these is past the 07:00 local
+# floor in both halves of the year. See tests/test_schedule_gate.py.
+on:
+  schedule:
+    - cron: "0 11 * * 1"
+    - cron: "0 13 * * 1"
+    - cron: "0 15 * * 1"
+    - cron: "0 17 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: corpus
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+      JAPAN_EDINET_API_KEY: ${{ secrets.JAPAN_EDINET_API_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      WHALE_SEC_USER_AGENT: ${{ secrets.WHALE_SEC_USER_AGENT }}
+      WHALE_ENABLE_FMP: "1"
+      # Off by default so the test suite and offline runs never reach EDGAR; the weekly
+      # is the one place it should be on.
+      WHALE_TRACKED_FUNDS: "1"
+      WHALE_LLM_PROVIDER: anthropic
+      WHALE_EMAIL_PROVIDER: smtp
+      SMTP_HOST: smtp.gmail.com
+      SMTP_PORT: "587"
+      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      WHALE_EMAIL_TO: ${{ secrets.WHALE_EMAIL_TO }}
+      OPERATOR_ALERT_EMAIL: ${{ secrets.OPERATOR_ALERT_EMAIL }}
+      ARTICLE_BASE_URL: ${{ vars.ARTICLE_BASE_URL }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install -e .
+
+      # Before the gate, because the gate reads digest_runs out of the corpus to decide
+      # whether this week has already been reported.
+      - name: Download the corpus
+        run: scripts/corpus.sh download
+
+      - name: Does this week still owe a report?
+        id: when
+        run: echo "run=$(python -m whale_agent.jobs.schedule_gate)" >> "$GITHUB_OUTPUT"
+
+      # Exits non-zero if a core source is stale, which fails the job, alerts the
+      # operator by email, and stops the send. GitHub's own failed-run
+      # notification is the backstop for the case where SMTP is what broke.
+      - name: Gate on core-source freshness
+        if: steps.when.outputs.run == 'true'
+        run: python -m whale_agent.jobs.watchdog --gate
+
+      # Render the pages and publish them BEFORE the email goes out, so no link in a
+      # delivered email can point at a page that does not exist yet. The pages are
+      # written into deploy/public by the render step below via --articles-dir.
+      #
+      # This is also the step that pays for the model. It leaves the written-up theses
+      # in a dotfile inside --articles-dir, and the send step below reuses them, so one
+      # weekly costs one set of LLM calls rather than two. Both steps must therefore
+      # keep pointing at the same --articles-dir.
+      - name: Render the weekly and publish its pages
+        if: steps.when.outputs.run == 'true'
+        run: |
+          python -m whale_agent.jobs.digest_weekly \
+            --dry-run \
+            --articles-dir deploy/public \
+            --article-base-url "$ARTICLE_BASE_URL"
+
+      - name: Deploy the pages to Cloudflare
+        if: steps.when.outputs.run == 'true' && env.CLOUDFLARE_API_TOKEN != ''
+        working-directory: deploy
+        run: npx --yes wrangler@4 deploy
+
+      - name: Send the weekly
+        if: steps.when.outputs.run == 'true'
+        run: |
+          python -m whale_agent.jobs.digest_weekly \
+            --articles-dir deploy/public \
+            --article-base-url "$ARTICLE_BASE_URL"
+
+      - name: Upload the corpus
+        if: steps.when.outputs.run == 'true'
+        run: scripts/corpus.sh upload

@@ -1,0 +1,52 @@
+name = "whale-agent-site"
+main = "src/worker.js"
+compatibility_date = "2026-09-01"
+
+# Served on the project domain, and still on workers.dev because the published install
+# command (README, npm launcher) uses that host.
+workers_dev = true
+routes = [{ pattern = "whale-agent.com", custom_domain = true }]
+
+# Static site plus a small worker for /api/* (newsletter) and /install.
+# Everything in ../site is public by design. Do not put secrets, the database,
+# or generated reports in that folder.
+[assets]
+directory = "../site"
+binding = "ASSETS"
+run_worker_first = ["/api/*", "/install"]
+
+[[kv_namespaces]]
+binding = "SUBSCRIBERS"
+id = "286e39d85ab844129842305686243caf"
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+# Secret (not in this file): ADMIN_TOKEN, set with `npx wrangler secret put ADMIN_TOKEN`.
+
+# Confirmation email sender (optional). With none of these set, no email is sent and
+# subscribers confirm through the link on the site, as before.
+#
+# Option A, Cloudflare Email Service binding (transactional mail only). Uncomment after
+# `npx wrangler email sending enable <your-domain>` succeeds:
+# [[send_email]]
+# name = "EMAIL"
+#
+# Option B, Resend: `npx wrangler secret put RESEND_API_KEY`
+#
+# Both options also need a verified From address on your domain:
+# [vars]
+# EMAIL_FROM = "brief@<your-domain>"
+# EMAIL_FROM_NAME = "Whale Agent"
+# SITE_ORIGIN = "https://<your-site-host>"
+#
+# Optional secret for the consent audit hash of the client IP:
+# `npx wrangler secret put IP_HASH_SALT`
+
+# Confirmation email sender: Resend, with RESEND_API_KEY set as a secret. The From
+# address is on whale-agent.com, which is the domain verified with Resend.
+[vars]
+EMAIL_FROM = "brief@whale-agent.com"
+EMAIL_FROM_NAME = "Whale Agent"
+SITE_ORIGIN = "https://whale-agent.com"

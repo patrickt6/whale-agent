@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en" data-palette="whale-deep">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How it works | Whale Agent by Patrick Taylor</title>
+<link rel="icon" href="whale.svg" type="image/svg+xml">
+<meta name="description" content="The eleven stages between a filing being published and a row arriving in your inbox, explained without jargon.">
+<link rel="preload" href="fonts/rules-cnd-ultralight.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/rules-cnd-medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.css">
+<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="palettes.css?v=2">
+<script src="palette-switcher.js?v=2" defer></script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <nav class="nav-side left" aria-label="Pages">
+      <a class="navlink" href="how-it-works.html" aria-current="page">How it works</a>
+      <a class="navlink" href="checks.html">Checks</a>
+      <a class="navlink" href="limits.html">Limits</a>
+      <a class="navlink mobile-only" href="index.html#subscribe">Subscribe</a>
+    </nav>
+    <div class="brand-stack">
+      <a class="brand" href="index.html"><img class="brand-whale" src="whale.svg" alt="" width="44" height="44"><span>Whale<br>Agent</span></a>
+      <p class="byline">by Patrick Taylor</p>
+    </div>
+    <div class="nav-side right">
+      <a class="nav-gh" href="https://github.com/patrickt6/whale-agent" aria-label="Whale Agent on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+      <a class="navlink" href="index.html#subscribe">Subscribe</a>
+      <a class="nav-install" href="index.html#install"><span>Install</span><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="hero page-hero">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h1>From a regulator's website to your inbox</h1>
+    <p class="lede">
+      Eleven stages. Most of the work is translation and arithmetic. Some stages refuse bad input.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The shape of it</h2>
+    <p>
+      Many filings go in and a few come out. Plain code does the narrowing, and you can read and configure it.
+    </p>
+
+    <svg class="diagram" viewBox="0 0 700 250" role="img" aria-labelledby="diagram-title diagram-desc">
+      <title id="diagram-title">The pipeline, from many filings to a few rows</title>
+      <desc id="diagram-desc">Filings from several regulators enter on the left, pass through reading, pricing, a plausibility check and a size threshold, and a small number of rows leave on the right as an email.</desc>
+
+      <rect class="d-box" x="6" y="18" width="120" height="34" rx="6"/>
+      <text class="d-text" x="20" y="34">Regulators</text>
+      <text class="d-sub" x="20" y="46">SEC, EDINET, MOPS</text>
+
+      <rect class="d-box" x="6" y="70" width="120" height="34" rx="6"/>
+      <text class="d-text" x="20" y="86">Vendor feeds</text>
+      <text class="d-sub" x="20" y="98">optional, paid</text>
+
+      <rect class="d-box" x="6" y="122" width="120" height="34" rx="6"/>
+      <text class="d-text" x="20" y="138">On-chain</text>
+      <text class="d-sub" x="20" y="150">optional</text>
+
+      <path class="d-line" d="M126 35 H172 V95 M126 87 H172 M126 139 H172 V95 M172 95 H196"/>
+      <polygon class="d-arrow" points="196,91 206,95 196,99"/>
+
+      <rect class="d-box" x="208" y="78" width="112" height="34" rx="6"/>
+      <text class="d-text" x="222" y="94">Same shape</text>
+      <text class="d-sub" x="222" y="106">one schema, USD</text>
+
+      <path class="d-line" d="M320 95 H344"/>
+      <polygon class="d-arrow" points="344,91 354,95 344,99"/>
+
+      <rect class="d-box-strong" x="356" y="78" width="112" height="34" rx="6"/>
+      <text class="d-text" x="370" y="94">Believable?</text>
+      <text class="d-sub" x="370" y="106">size and price</text>
+
+      <path class="d-line" d="M412 112 V160 H352"/>
+      <polygon class="d-arrow" points="352,156 342,160 352,164"/>
+      <rect class="d-box" x="230" y="143" width="112" height="34" rx="6"/>
+      <text class="d-text" x="244" y="159">Held back</text>
+      <text class="d-sub" x="244" y="171">counted, kept</text>
+
+      <path class="d-line" d="M468 95 H492"/>
+      <polygon class="d-arrow" points="492,91 502,95 492,99"/>
+
+      <rect class="d-box-strong" x="504" y="78" width="112" height="34" rx="6"/>
+      <text class="d-text" x="518" y="94">Big enough?</text>
+      <text class="d-sub" x="518" y="106">your threshold</text>
+
+      <path class="d-line" d="M560 112 V196 H470"/>
+      <polygon class="d-arrow" points="470,192 460,196 470,200"/>
+      <rect class="d-box" x="348" y="179" width="112" height="34" rx="6"/>
+      <text class="d-text" x="362" y="195">Left out</text>
+      <text class="d-sub" x="362" y="207">too small</text>
+
+      <path class="d-line" d="M616 95 H648 V52"/>
+      <polygon class="d-arrow" points="644,52 648,42 652,52"/>
+      <rect class="d-box" x="592" y="8" width="102" height="34" rx="6"/>
+      <text class="d-text" x="606" y="24">Your email</text>
+      <text class="d-sub" x="606" y="36">a few rows</text>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The eleven stages</h2>
+    <ol class="steps">
+      <li>
+        <strong>Decide which sources run today</strong>
+        <p>
+          A source needs both a switch turned on and, where the provider requires one, a
+          key. A source that is off is recorded with the reason. Your email then says "Taiwan is switched off" and does not look like a quiet day in Taiwan.
+        </p>
+      </li>
+      <li>
+        <strong>Fetch and translate the filings</strong>
+        <p>
+          Each source has its own reader that fetches the day's filings and rewrites them
+          into one common shape: who filed, what they did, which company, how many shares,
+          at what price, on what date, published when. To add a country, you add one reader.
+        </p>
+      </li>
+      <li>
+        <strong>Work out the dollars</strong>
+        <p>
+          Three ways, in order. If the filing states an amount, use it and convert the
+          currency. If it states a share count and a price, multiply. If it states a
+          percentage of a company, apply that to the company's value. If none of those are
+          available, the filing keeps no dollar figure and says so.
+        </p>
+      </li>
+      <li>
+        <strong>Add context</strong>
+        <p>
+          How big the company is, what fraction of it this represents, whether this filer
+          has appeared before, and how this compares to their usual size. Anything not
+          learned stays blank. A blank is never treated as zero.
+        </p>
+      </li>
+      <li>
+        <strong>Ask whether the number could be true</strong>
+        <p>
+          A separate test from "where did this come from". A position cannot be worth more
+          than the whole company. A share price of forty million dollars is not a share
+          price. Filings that fail are marked, counted and held back rather than deleted.
+          <a href="checks.html">This page explains why.</a>
+        </p>
+      </li>
+      <li>
+        <strong>Score and rank</strong>
+        <p>
+          Duplicates and later amendments of the same filing are collapsed into one. What
+          remains gets a score from size, the fraction of the company involved, whether the
+          filer is new, and whether several insiders at one company bought in the same
+          window. Then the filings are sorted and split into tiers.
+        </p>
+      </li>
+      <li>
+        <strong>Apply your threshold</strong>
+        <p>
+          Anything below the size you set does not go in the email. The default is $5M.
+          Setting it to $250,000 is one flag. Everything read is still stored, so changing
+          the threshold does not mean losing the past.
+        </p>
+      </li>
+      <li>
+        <strong>Look for patterns across the window</strong>
+        <p>
+          Four insiders at one company who each buy $2M do not pass a $5M filter one by one. So pattern detection runs over everything read, and the group total must be a real amount.
+        </p>
+      </li>
+      <li>
+        <strong>Write the words</strong>
+        <p>
+          Optional. A language model (Gemini free tier, Anthropic or OpenAI) writes the summary sentences. It gets finished strings like "$12.4M" and must copy them. It does not see raw filings or scores and does no arithmetic. With no key, a fixed template writes the sentences.
+        </p>
+      </li>
+      <li>
+        <strong>Check every figure against the filings</strong>
+        <p>
+          Before anything is sent, each sentence containing a number is checked against the
+          underlying filings. If a number does not trace back to a field, the sentence is dropped and the email is rebuilt from the plain version.
+        </p>
+      </li>
+      <li>
+        <strong>Send it</strong>
+        <p>
+          The daily table by email, and the weekly note alongside it. Very large single
+          positions can also fire an immediate alert. A refused send reports a failure, so a run that delivers nothing never looks like a success.
+        </p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What arrives</h2>
+    <div class="split">
+      <div>
+        <p>
+          A daily email with the table, and a weekly note that groups the week into
+          patterns and writes them up. The weekly note always carries the same block of
+          caveats, including that insider buys carry more information than sells, that the
+          historical effect was concentrated in smaller companies and has weakened since it
+          was published, and that fund holdings data is stale by the time it appears.
+        </p>
+        <p>
+          Given the same filings and the same date, the daily text, the daily email, the
+          weekly report and the ranking come out identical every time you run it. That is
+          checked by a test. The written prose is the exception and is allowed to vary, but
+          the figures inside it are not.
+        </p>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Set up</h3>
+          <p>
+            Python 3.11 or newer, and a contact email address for the SEC, which the SEC
+            requires of anyone reading their archive in bulk. The free sources need nothing
+            else. Paid feeds are optional and the tool tells you which ones are off.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Tuning it</h3>
+          <p>
+            Profiles are small config files. One watches only US insiders at a $1M
+            threshold and ignores 10% owners. One watches only activist stakes. Settings
+            are layered, and the tool can print each value along with which layer set it,
+            so you can see where each setting came from.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="checks.html">Checks</a>
+      <a href="limits.html">Limits</a>
+      <a href="https://github.com/patrickt6/whale-agent">GitHub</a>
+    </nav>
+    <p>Whale Agent by Patrick Taylor. Open source under the MIT licence. Not investment advice.</p>
+    <p class="prov">No row appears without a source field behind it.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+<script src="scroll.js"></script>
+</body>
+</html>

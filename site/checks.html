@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" data-palette="whale-deep">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How the numbers are checked | Whale Agent by Patrick Taylor</title>
+<link rel="icon" href="whale.svg" type="image/svg+xml">
+<meta name="description" content="Four deterministic gates check every vendor row and every rendered figure before an email is sent. Constants and tests from the source.">
+<link rel="preload" href="fonts/rules-cnd-ultralight.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/rules-cnd-medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.css">
+<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="palettes.css?v=2">
+<script src="palette-switcher.js?v=2" defer></script>
+<link rel="stylesheet" href="checks.css?v=2">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <nav class="nav-side left" aria-label="Pages">
+      <a class="navlink" href="how-it-works.html">How it works</a>
+      <a class="navlink" href="checks.html" aria-current="page">Checks</a>
+      <a class="navlink" href="limits.html">Limits</a>
+      <a class="navlink mobile-only" href="index.html#subscribe">Subscribe</a>
+    </nav>
+    <div class="brand-stack">
+      <a class="brand" href="index.html"><img class="brand-whale" src="whale.svg" alt="" width="44" height="44"><span>Whale<br>Agent</span></a>
+      <p class="byline">by Patrick Taylor</p>
+    </div>
+    <div class="nav-side right">
+      <a class="nav-gh" href="https://github.com/patrickt6/whale-agent" aria-label="Whale Agent on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+      <a class="navlink" href="index.html#subscribe">Subscribe</a>
+      <a class="nav-install" href="index.html#install"><span>Install</span><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="hero page-hero">
+  <div class="wrap">
+    <p class="eyebrow">How the numbers are checked</p>
+    <h1>Four gates between a vendor row and your inbox.</h1>
+    <p class="lede">Each gate is plain Python with fixed constants. No model decides whether a figure passes.</p>
+  </div>
+</section>
+
+<section class="ck-problem">
+  <div class="wrap">
+    <p class="eyebrow">Problem</p>
+    <h2>A number can trace to a real field and still be impossible.</h2>
+    <p class="ck-note">The FMP price field sometimes holds the trade total instead of a unit price. Shares times price then gives a figure that traces to the filing and is false.</p>
+    <!-- Both rows: whale-agent src/whale_agent/enrichment/plausibility.py:7-8 (module docstring); tests/test_quadrillion.py:43-54 (FMP_ROW); tests/test_scoring.py:273 (7_435_228_086.0); tests/test_output_safety.py:505 -->
+    <div class="ck-rows" role="table" aria-label="The two observed vendor rows">
+      <div class="ck-row ck-head" role="row"><span role="columnheader">Issuer / filer</span><span role="columnheader">shares</span><span role="columnheader">price field</span><span role="columnheader">shares x price</span></div>
+      <div class="ck-row" role="row"><span role="cell">MetLife / FINS</span><span role="cell" class="n">40,000,000</span><span role="cell" class="n ck-bad">40,000,000</span><span role="cell" class="n ck-bad">$1,600,000,000,000,000</span></div>
+      <div class="ck-row" role="row"><span role="cell">Sutherland / PSX</span><span role="cell" class="n">3,523</span><span role="cell" class="n ck-bad">2,110,482</span><span role="cell" class="n ck-bad">$7,435,228,086</span></div>
+    </div>
+    <p class="ck-small">Both rows are fixtures in the test suite.</p>
+  </div>
+</section>
+
+<section class="ck-solution">
+  <div class="wrap">
+    <p class="eyebrow">Solution</p>
+    <h2>Check provenance and plausibility separately.</h2>
+    <p class="ck-note">"Provenance only" is a pipeline that only asks where a number came from. "Whale Agent" is this pipeline. Select a gate to see its constants and source.</p>
+
+    <div class="ck-diagram" id="ck-diagram">
+      <figure class="ck-lane" data-lane="trace">
+        <figcaption>Provenance only</figcaption>
+        <svg viewBox="0 0 300 520" role="img" aria-label="Provenance only: the row traces to a field, is formatted, and the 1.6 quadrillion dollar figure is sent">
+          <line class="ck-wire" x1="12" y1="40" x2="12" y2="480"/>
+          <g class="ck-node"><rect x="30" y="16" width="240" height="48"/><text x="150" y="45">vendor row</text></g>
+          <g class="ck-node"><rect x="30" y="126" width="240" height="48"/><text x="150" y="147">does the figure trace</text><text x="150" y="163">to a field? yes</text></g>
+          <g class="ck-node"><rect x="30" y="236" width="240" height="48"/><text x="150" y="265">formatted as money</text></g>
+          <g class="ck-node ck-out ck-fail"><rect x="30" y="346" width="240" height="48"/><text x="150" y="375">sent</text></g>
+          <g class="ck-node ck-inbox ck-fail"><rect x="30" y="456" width="240" height="48"/><text x="150" y="477">inbox shows</text><text x="150" y="493">$1.6 quadrillion</text></g>
+          <circle class="ck-token" cx="12" cy="40" r="7"/>
+        </svg>
+      </figure>
+
+      <figure class="ck-lane" data-lane="gates">
+        <figcaption>Whale Agent</figcaption>
+        <svg viewBox="0 0 300 520" role="group" aria-label="Whale Agent: four gates. The row stops at gate 1.">
+          <line class="ck-wire" x1="12" y1="40" x2="12" y2="480"/>
+          <g class="ck-node"><rect x="30" y="16" width="240" height="48"/><text x="150" y="45">vendor row</text></g>
+          <!-- Gate 1: src/whale_agent/ingestion/vendor_types.py:90 coerce_price_per_share -->
+          <g class="ck-node ck-gate" data-gate="1" tabindex="0" role="button" aria-controls="ck-detail"><rect x="30" y="104" width="240" height="48"/><text x="150" y="125">gate 1</text><text x="150" y="141">parse-time coercion</text></g>
+          <!-- Gate 2: src/whale_agent/enrichment/plausibility.py:136 check_event, :227 screen -->
+          <g class="ck-node ck-gate" data-gate="2" tabindex="0" role="button" aria-controls="ck-detail"><rect x="30" y="192" width="240" height="48"/><text x="150" y="213">gate 2</text><text x="150" y="229">plausibility</text></g>
+          <!-- Gate 3: src/whale_agent/summarization/provenance.py:55,121,152 -->
+          <g class="ck-node ck-gate" data-gate="3" tabindex="0" role="button" aria-controls="ck-detail"><rect x="30" y="280" width="240" height="48"/><text x="150" y="301">gate 3</text><text x="150" y="317">figure check</text></g>
+          <!-- Gate 4: src/whale_agent/delivery/email.py:67 find_egress_violations -->
+          <g class="ck-node ck-gate" data-gate="4" tabindex="0" role="button" aria-controls="ck-detail"><rect x="30" y="368" width="240" height="48"/><text x="150" y="389">gate 4</text><text x="150" y="405">egress screen</text></g>
+          <g class="ck-node ck-inbox"><rect x="30" y="456" width="240" height="48"/><text x="150" y="477">inbox: row withheld,</text><text x="150" y="493">"1 filing withheld"</text></g>
+          <g class="ck-stop" aria-hidden="true"><line x1="274" y1="116" x2="290" y2="140"/><line x1="290" y1="116" x2="274" y2="140"/></g>
+          <circle class="ck-token" cx="12" cy="40" r="7"/>
+        </svg>
+        <!-- Reason text: src/whale_agent/ingestion/vendor_types.py:111-118; asserted by tests/test_quadrillion.py:68-80 (price_used is None, _vendor_rejections recorded) -->
+        <p class="ck-reason"><span class="ck-tag">stopped at gate 1</span> price 40,000,000 is "above the 1,000,000 per-share ceiling; the field most likely holds a transaction total rather than a unit price". The price becomes unknown (None). The share count is kept.</p>
+      </figure>
+
+      <div class="ck-detail" id="ck-detail" aria-live="polite">
+        <p class="ck-detail-hint">Hover, focus or tap a gate.</p>
+      </div>
+    </div>
+
+    <!-- Gate detail data. Every constant below is cited in checks-diagram.js next to its value. -->
+    <template id="ck-gate-1">
+      <p class="ck-dt">Gate 1 / parse-time coercion</p>
+      <p class="ck-src">ingestion/vendor_types.py: coerce_price_per_share, coerce_share_count, coerce_usd_amount</p>
+      <dl>
+        <dt>price per share</dt><dd>$0.01 to $1,000,000, else field refused</dd>
+        <dt>share count</dt><dd>&gt; 0 and &le; 1e13</dd>
+        <dt>stated USD amount</dt><dd>&le; $250,000,000,000</dd>
+        <dt>integer sentinels</dt><dd>2^63 - 1, -2^63, -1</dd>
+      </dl>
+      <p class="ck-fail-line">On failure: field set to None, reason written to the row.</p>
+    </template>
+    <template id="ck-gate-2">
+      <p class="ck-dt">Gate 2 / plausibility</p>
+      <p class="ck-src">enrichment/plausibility.py: check_event, screen</p>
+      <dl>
+        <dt>value vs market cap</dt><dd>&le; cap x 1.5</dd>
+        <dt>shares vs outstanding</dt><dd>&le; outstanding x 1.5</dd>
+        <dt>stated vs shares x price</dt><dd>ratio &le; 10</dd>
+        <dt>absolute ceiling</dt><dd>$250,000,000,000</dd>
+        <dt>ceiling with no market cap</dt><dd>$25,000,000,000</dd>
+        <dt>sentinel</dt><dd>|x| &ge; 2^62, or -1</dd>
+        <dt>placeholder issuer</dt><dd>"", NONE, NULL, N/A, UNKNOWN, -, --</dd>
+      </dl>
+      <p class="ck-fail-line">On failure: row quarantined with reasons. Storage reads (Store.events_since) run screen() and leave it out.</p>
+    </template>
+    <template id="ck-gate-3">
+      <p class="ck-dt">Gate 3 / figure check</p>
+      <p class="ck-src">summarization/provenance.py: allowed_numeric_tokens, find_unsourced_numbers, assert_no_hallucinated_numbers</p>
+      <dl>
+        <dt>allowed set</dt><dd>tokens built from stored event fields and their aggregates</dd>
+        <dt>scope</dt><dd>every material number in the text, URLs removed first</dd>
+      </dl>
+      <p class="ck-fail-line">On failure: a summary sentence with an unsourced number is dropped. If the full render still fails, the prose is dropped and the digest is rendered from the template. A template render that fails raises an error.</p>
+    </template>
+    <template id="ck-gate-4">
+      <p class="ck-dt">Gate 4 / egress screen</p>
+      <p class="ck-src">delivery/email.py: find_egress_violations</p>
+      <dl>
+        <dt>rendered figures</dt><dd>subject, text and HTML: each $ figure &le; $250,000,000,000</dd>
+        <dt>source rows</dt><dd>check_event runs again on every event behind the email</dd>
+      </dl>
+      <p class="ck-fail-line">On failure: the email is not sent, the send reports failure, and the reason is written to quarantine.</p>
+    </template>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Defence in depth</p>
+    <h2>Gates, code and tests</h2>
+    <div class="table-scroll">
+      <table class="table-plain ck-table">
+        <thead><tr><th>Gate</th><th>Checks</th><th>Code</th><th>On failure</th><th>Tests</th></tr></thead>
+        <tbody>
+          <!-- vendor_types.py:90,123,146; tests/test_quadrillion.py 12 def test_ (grep -c) -->
+          <tr><td>1 Coercion</td><td>Price band, share count ceiling, USD ceiling, sentinels</td><td class="n">ingestion.vendor_types</td><td>Field becomes None</td><td class="n">test_quadrillion.py: 12</td></tr>
+          <!-- plausibility.py:136,227; valuation.py:152; storage/db.py:184; tests/test_output_safety.py 46, tests/test_valuation.py 8 -->
+          <tr><td>2 Plausibility</td><td>Market cap, shares outstanding, value ratio, ceilings, sentinels, placeholders</td><td class="n">enrichment.plausibility</td><td>Row quarantined, left out of reads</td><td class="n">test_output_safety.py: 46<br>test_valuation.py: 8</td></tr>
+          <!-- provenance.py:55,121,152; llm.py:424 sanitize_prose; pipeline.py:251-254; tests/test_pipeline.py 5 -->
+          <tr><td>3 Figure check</td><td>Every number in the text is in the allowed token set</td><td class="n">summarization.provenance</td><td>Sentence dropped, then template render, then error</td><td class="n">test_pipeline.py: 5</td></tr>
+          <!-- email.py:67, EGRESS_CEILING_USD = ABSOLUTE_CEILING_USD at email.py:39 -->
+          <tr><td>4 Egress</td><td>Rendered $ figures and source rows</td><td class="n">delivery.email</td><td>Send blocked, quarantine record</td><td class="n">test_email_themes.py: 15</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="ck-small">Counts are <code>grep -c "def test_"</code> per file. Several files test more than one gate, so the counts overlap and do not add up to a gate total. test_quadrillion.py pins the MetLife row at the adapter, valuation, storage read and send.</p>
+    <div class="callout">
+      <p>The only model in the pipeline is the optional summary writer. Gate 3 filters its sentences. These gates stop figures that are impossible. A figure that is wrong but possible still gets through.</p>
+    </div>
+    <p><a href="limits.html">The rest of the limits</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="checks.html">Checks</a>
+      <a href="limits.html">Limits</a>
+      <a href="https://github.com/patrickt6/whale-agent">GitHub</a>
+    </nav>
+    <p>Whale Agent by Patrick Taylor. Open source under the MIT licence. Not investment advice.</p>
+    <p class="prov">No row appears without a source field behind it.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+<script src="scroll.js"></script>
+<script src="checks-diagram.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+name: newsletter
+
+# The free public brief for confirmed subscribers (ticket WA-10, #21).
+#
+# Free sources only. `whale newsletter send` switches off every paid adapter and clears
+# its key, so no paid secret is passed to this job at all. The LLM is the template
+# unless a free GEMINI_API_KEY secret exists.
+#
+# Ordering (#18): this job has no report-hosting step in front of the send. The brief is
+# complete inside the email, so nothing the send needs can fail first. The sent log is
+# saved with `if: always()` after the send, so a failed or partial send still keeps its
+# record and a rerun does not mail anyone twice.
+on:
+  schedule:
+    - cron: "0 14 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Render and count only, send nothing"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: newsletter
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      WHALE_SEC_USER_AGENT: ${{ secrets.WHALE_SEC_USER_AGENT }}
+      JAPAN_EDINET_API_KEY: ${{ secrets.JAPAN_EDINET_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      WHALE_LLM_PROVIDER: gemini
+      WHALE_EMAIL_PROVIDER: none
+      WHALE_NEWSLETTER_API: ${{ vars.WHALE_NEWSLETTER_API }}
+      WHALE_NEWSLETTER_ADMIN_TOKEN: ${{ secrets.WHALE_NEWSLETTER_ADMIN_TOKEN }}
+      WHALE_NEWSLETTER_FOOTER: ${{ vars.WHALE_NEWSLETTER_FOOTER }}
+      WHALE_NEWSLETTER_FROM: ${{ vars.WHALE_NEWSLETTER_FROM }}
+      WHALE_NEWSLETTER_REPLY_TO: ${{ vars.WHALE_NEWSLETTER_REPLY_TO }}
+      # Key for the sent-log HMAC. The log sits in the Actions cache, so it must not hold
+      # a plain hash of an address. Falls back to the admin token when unset.
+      WHALE_NEWSLETTER_HASH_KEY: ${{ secrets.WHALE_NEWSLETTER_HASH_KEY }}
+      WHALE_NEWSLETTER_PROVIDER: resend
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      WHALE_NEWSLETTER_SENT_LOG: newsletter-state/newsletter_sent.jsonl
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install -e .
+
+      # The newest saved sent log. Each run saves a new cache entry under its own run id,
+      # and restore-keys picks the latest one, so the log carries forward run to run.
+      - name: Restore the sent log
+        uses: actions/cache/restore@v4
+        with:
+          path: newsletter-state
+          key: newsletter-sent-${{ github.run_id }}
+          restore-keys: newsletter-sent-
+
+      # Inputs go through env, not ${{ }} inside the script, so no input text is ever
+      # pasted into the shell.
+      - name: Send the newsletter
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$DRY_RUN" = "true" ]; then
+            whale newsletter send --cadence weekly --dry-run
+          else
+            whale newsletter send --cadence weekly
+          fi
+
+      - name: Save the sent log
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: newsletter-state
+          key: newsletter-sent-${{ github.run_id }}

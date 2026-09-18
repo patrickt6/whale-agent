@@ -1,0 +1,15 @@
+# The sdist carries the package, the README and the licence. Nothing else ships:
+# no site, no deploy config, no docs/superpowers notes, no local data.
+include README.md
+include pyproject.toml
+include LICENSE
+recursive-include src/whale_agent py.typed
+recursive-include src/whale_agent/demo_data *.xml
+prune site
+prune deploy
+prune deploy-site
+prune docs
+prune assets
+prune .github
+prune .claude
+global-exclude *.py[cod] __pycache__ .env *.db *.sqlite

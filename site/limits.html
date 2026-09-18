@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en" data-palette="whale-deep">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Limits | Whale Agent by Patrick Taylor</title>
+<link rel="icon" href="whale.svg" type="image/svg+xml">
+<meta name="description" content="The limits, stated plainly: no edge, stale fund data, missing countries, and the parts of the project that are not built yet.">
+<link rel="preload" href="fonts/rules-cnd-ultralight.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/rules-cnd-medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.css">
+<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="palettes.css?v=2">
+<script src="palette-switcher.js?v=2" defer></script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <nav class="nav-side left" aria-label="Pages">
+      <a class="navlink" href="how-it-works.html">How it works</a>
+      <a class="navlink" href="checks.html">Checks</a>
+      <a class="navlink" href="limits.html" aria-current="page">Limits</a>
+      <a class="navlink mobile-only" href="index.html#subscribe">Subscribe</a>
+    </nav>
+    <div class="brand-stack">
+      <a class="brand" href="index.html"><img class="brand-whale" src="whale.svg" alt="" width="44" height="44"><span>Whale<br>Agent</span></a>
+      <p class="byline">by Patrick Taylor</p>
+    </div>
+    <div class="nav-side right">
+      <a class="nav-gh" href="https://github.com/patrickt6/whale-agent" aria-label="Whale Agent on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+      <a class="navlink" href="index.html#subscribe">Subscribe</a>
+      <a class="nav-install" href="index.html#install"><span>Install</span><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="hero page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Limits</p>
+    <h1>What it will not do.</h1>
+    <p class="lede">
+      These are the limits that could cost you money if you did not know about them.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>It does not find an edge</h2>
+    <p class="lede">
+      Every filing it reads is published because the law requires it, on a public website,
+      free to anyone. Professional investors read those feeds within seconds. By the time
+      a filing reaches your inbox, whatever effect it was going to have on a price has
+      already happened.
+    </p>
+    <p>
+      What the tool removes is the gap between a filing being published and a person
+      seeing it, in dollars, next to everything else filed that day. The tool helps you read filings. It makes no claim about returns. There is no backtest in this project and no record of
+      performance, so there is nothing in it that could support a claim about returns even
+      if one were made.
+    </p>
+    <p>
+      It is not investment advice, it is not a trading system, and it does not tell you
+      what to buy.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Being traceable is not the same as being right</h2>
+    <p>
+      The project guarantees that every figure it prints was copied out of a field in a
+      filing. That guarantee says where a number came from. It does not say the field held
+      what the provider claimed it held.
+    </p>
+    <p>
+      Those are two different promises, and the second one needs its own machinery. A
+      vendor once sent a price field holding the total value of a trade instead of the
+      price of a share, which produced a position valued at $1.6 quadrillion that passed
+      every trace check cleanly. A separate set of checks handles this case. Those checks can also be wrong.
+      <a href="checks.html">The detail is here.</a>
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Fund holdings arrive late</h2>
+    <div class="callout">
+      <p>
+        US fund holdings reported on Form 13F are between 45 and 135 days old by the time
+        they are published. A fund can have sold the entire position before you see it.
+      </p>
+    </div>
+    <p>
+      That data is also long only. It does not include short positions and it does not
+      include derivatives, so a fund that looks heavily invested in a company by its 13F
+      may be hedged in ways the filing never shows. Insider filings do not have this
+      problem, and typically appear within days.
+    </p>
+    <p>
+      The weekly note carries this caveat in every issue rather than only here. It also
+      notes that insider buys carry more information than insider sells, that the
+      historical effect was concentrated in opportunistic rather than routine trades and in
+      smaller companies, and that it has weakened since the research describing it was
+      published. For Taiwan specifically, published work found no reliable abnormal returns
+      from insider trading disclosures, and Taiwan is one of the markets covered here.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Not built yet</h2>
+    <p>
+      The current code has these gaps.
+    </p>
+
+    <div class="card warn">
+      <h3>Currency conversion uses fixed rates</h3>
+      <p>
+        Non-US filings are converted using approximate rates that ignore the date of the
+        filing. A figure converted from yen or Taiwan dollars carries an error that grows
+        with how much that currency has moved since the filing. US figures are unaffected.
+      </p>
+    </div>
+
+    <div class="card warn">
+      <h3>Storage is SQLite only</h3>
+      <p>
+        A Postgres connection string is read from the configuration and then not used.
+        Everything is stored in a local SQLite file. That works for one person on one machine. It does not work for a shared setup.
+      </p>
+    </div>
+
+    <div class="card warn">
+      <h3>You cannot choose a delivery channel</h3>
+      <p>
+        Slack delivery is implemented, and there is no way to select it. Delivery
+        goes by email.
+      </p>
+    </div>
+
+    <div class="card warn">
+      <h3>Several countries are not covered</h3>
+      <p>
+        There is no reader for South Korea, the United Kingdom, Hong Kong, Australia,
+        India, or the European transparency filings. A disclosure in any of those markets
+        will not appear in your email, and nothing on the page will tell you it is
+        missing, because the tool does not know those filings exist. Covered today: the
+        United States, Japan and Taiwan, plus optional vendor and on-chain feeds.
+      </p>
+    </div>
+
+    <div class="card warn">
+      <h3>Filings without a dollar amount stay unpriced</h3>
+      <p>
+        Filings that report a share count or a percentage rather than an amount cannot be
+        valued without a price provider, and the free price providers are not enough. Those
+        filings are read and stored with no dollar figure. They are valued later if a paid
+        price feed is turned on. Until then they sit under a size threshold they were never
+        measured against.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What it does guarantee</h2>
+    <p>
+      Given the same filings and the same date, the daily table, the daily email, the
+      weekly report and the ordering are identical every time. Written prose is the
+      exception, and the figures inside it are checked against the filings before anything
+      is sent.
+    </p>
+    <p>
+      A source that is broken or switched off becomes a line of text in your email naming it. The email does not just leave a gap. A source that failed and a source that had a quiet day are
+      recorded differently.
+    </p>
+    <p>
+      A run that attempts to send and is refused reports a failure rather than success. If the pipeline stops delivering, you see it right away.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="checks.html">Checks</a>
+      <a href="limits.html">Limits</a>
+      <a href="https://github.com/patrickt6/whale-agent">GitHub</a>
+    </nav>
+    <p>Whale Agent by Patrick Taylor. Open source under the MIT licence. Not investment advice.</p>
+    <p class="prov">No row appears without a source field behind it.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+<script src="scroll.js"></script>
+</body>
+</html>

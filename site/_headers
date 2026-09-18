@@ -1,0 +1,13 @@
+# Security headers for static asset responses (Workers static assets).
+# https://developers.cloudflare.com/workers/static-assets/headers/
+# This file is not served. It does not apply to responses built by deploy-site/src/worker.js
+# (/api/* and /install); the Worker sets its own headers.
+# style-src needs 'unsafe-inline': palettes.html and demo/*.html use <style> blocks and
+# style attributes. No page has an inline script.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  X-Frame-Options: SAMEORIGIN
+  Strict-Transport-Security: max-age=31536000

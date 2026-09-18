@@ -1,0 +1,12 @@
+name = "whale-weekly"
+compatibility_date = "2026-01-01"
+
+# Static assets only. There is no worker script any more: the password gate was dropped
+# because the reader should not have to type anything to read his own newsletter.
+#
+# What that means, stated plainly: these pages are PUBLIC to anyone who has the URL. The
+# URL is long and unguessed, which is obscurity rather than a control. Nothing here is
+# secret (every figure is copied from a public filing), so obscurity is an acceptable
+# trade. If that ever stops being true, deploy/README.md records how to put the gate back.
+[assets]
+directory = "./public"

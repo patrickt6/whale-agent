@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+#
+# Launcher for the whale-agent jobs.
+#
+#   ./whale                        interactive app: settings, preview, test email
+#   ./whale digest --demo          offline demo, no network, no email
+#   ./whale digest --show-config   what is switched on, and what would switch on the rest
+#   ./whale digest                 the real thing
+#   ./whale weekly --dry-run
+#   ./whale alerts --demo --dry-run   Tier-1 instant alerts, offline demo
+#   ./whale watchdog --check
+#   ./whale doctor [--live]        check keys, email, sources; --live tries SMTP login
+#   ./whale settings | config | test-email
+#   ./whale schedule on|off|status [--time HH:MM]   send the briefs automatically
+#   ./whale relabel --dry-run     backfill English issuer names onto stored CJK rows
+#   ./whale test                   run the test suite
+#   ./whale python ...             the venv interpreter, with src importable
+#
+# Why this exists rather than the installed `whale-digest` console script: the
+# editable install writes a `.pth` file pointing at `src/`, and this machine's
+# Homebrew Python 3.14 does not honour it (a plain-path `.pth` probe in the same
+# directory works, so it is specific to that file). Setting PYTHONPATH explicitly
+# is immune to whatever that is, and works from any directory.
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PY="$ROOT/.venv/bin/python"
+
+if [[ ! -x "$PY" ]]; then
+    echo "No virtualenv at $ROOT/.venv" >&2
+    echo "Create one with:  python3 -m venv .venv && .venv/bin/pip install -e '.[dev]'" >&2
+    exit 1
+fi
+
+export PYTHONPATH="$ROOT/src${PYTHONPATH:+:$PYTHONPATH}"
+# Run from the repo root so the SQLite database and .env resolve consistently no
+# matter where the command was typed.
+cd "$ROOT"
+
+# No arguments in an interactive terminal opens the app; in CI it stays the digest.
+if [[ $# -eq 0 && -t 0 && -t 1 ]]; then
+    exec "$PY" -m whale_agent.cli.app
+fi
+
+command="${1:-digest}"
+shift || true
+
+case "$command" in
+    app)      exec "$PY" -m whale_agent.cli.app "$@" ;;
+    digest)   exec "$PY" -m whale_agent.jobs.digest_daily "$@" ;;
+    weekly)   exec "$PY" -m whale_agent.jobs.digest_weekly "$@" ;;
+    alerts)   exec "$PY" -m whale_agent.jobs.instant_alerts "$@" ;;
+    watchdog) exec "$PY" -m whale_agent.jobs.watchdog "$@" ;;
+    relabel)  exec "$PY" -m whale_agent.jobs.relabel_issuers "$@" ;;
+    doctor|settings|test-email|config|schedule|preview-email)
+              exec "$PY" -m whale_agent.cli.main "$command" "$@" ;;
+    test)     exec "$PY" -m pytest "$@" ;;
+    python)   exec "$PY" "$@" ;;
+    -h|--help|help)
+        sed -n '3,21p' "$ROOT/whale" | sed 's/^# \{0,1\}//'
+        ;;
+    *)
+        echo "Unknown command: $command" >&2
+        echo "Try: app | digest | weekly | alerts | watchdog | doctor | settings | config | test-email | relabel | schedule | preview-email | test | python | help" >&2
+        exit 2
+        ;;
+esac

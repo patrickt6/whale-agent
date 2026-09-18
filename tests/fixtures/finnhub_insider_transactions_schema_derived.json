@@ -1,0 +1,9 @@
+{
+  "_comment": "SCHEMA-DERIVED, NOT A REAL RESPONSE. Built from the InsiderTransactions/Transactions definitions and sampleResponse in https://finnhub.io/static/swagger.json (path /stock/insider-transactions), opened 2026-09-17. Values are invented for tests.",
+  "symbol": "TSLA",
+  "data": [
+    {"symbol": "TSLA", "name": "Doe Jane", "share": 157234, "change": -20000, "filingDate": "2026-09-10", "transactionDate": "2026-09-08", "transactionCode": "S", "transactionPrice": 300.5},
+    {"name": "Roe Richard", "share": 50000, "change": 25000, "filingDate": "2026-09-11", "transactionDate": "2026-09-09", "transactionCode": "P", "transactionPrice": 250.0},
+    {"symbol": "TSLA", "name": "Bad Price", "share": 10, "change": 10, "filingDate": "2026-09-11", "transactionDate": "2026-09-09", "transactionCode": "P", "transactionPrice": 5000000000}
+  ]
+}

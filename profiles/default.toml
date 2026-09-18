@@ -1,0 +1,38 @@
+name = "default"
+description = "Today's out-of-the-box behaviour, unchanged. Ships all free sources, $5M gate."
+
+# This file is deliberately a no-op: every value here matches the Settings dataclass
+# default, so loading it (`--profile default`) produces byte-identical output to running
+# with no profile at all. It exists as living documentation -- the thing to copy and
+# start deleting lines from, rather than the thing to read a spec for -- and as a fixed
+# point the test suite checks against (`tests/test_profiles.py`), so a future edit to
+# this file that quietly drifts from the dataclass defaults fails a test immediately.
+
+# The dollar figure a disclosed move has to clear to appear in the daily digest at all.
+# $5M is the PRD's own number: big enough that noise (small routine sales, tiny grants)
+# does not dominate the read, small enough that most real insider conviction still shows.
+threshold_usd = 5000000.0
+
+# The "almost made it" note threshold, just under the gate. Lower than threshold_usd so
+# a $4.6M buy can be flagged as a near-miss rather than vanishing outright.
+near_threshold_usd = 4500000.0
+
+# The Tier-1 "interrupt someone" threshold for instant_alerts. Deliberately 20x the
+# daily gate: an alert that fires often gets muted, so this stays narrow on purpose.
+instant_usd = 100000000.0
+
+[sources]
+# Empty means "every registered source that is both enabled and holds its credential" --
+# the same behaviour as leaving WHALE_SOURCES unset. List explicit names here (see
+# `whale-digest --show-config` for the registered list) to narrow it; this file leaves
+# it open because "default" is meant to be everything free that works with no keys.
+enabled = []
+
+[filters]
+# Every list below is empty, which means "no restriction" -- the filter stage in
+# scoring/filters.py is a no-op when every one of these is empty, which is exactly what
+# keeps this profile identical to running with no profile at all.
+jurisdictions = []
+event_types = []
+filer_roles = []
+exclude_filer_roles = []

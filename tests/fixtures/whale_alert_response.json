@@ -1,0 +1,32 @@
+{
+  "result": "success",
+  "count": 2,
+  "transactions": [
+    {
+      "blockchain": "ethereum",
+      "symbol": "ETH",
+      "id": "1234567890",
+      "transaction_type": "transfer",
+      "hash": "0xabc123",
+      "from": {"address": "0x1111", "owner": "binance", "owner_type": "exchange"},
+      "to": {"address": "0x2222", "owner": "unknown", "owner_type": "unknown"},
+      "timestamp": 1785110400,
+      "amount": 12000,
+      "amount_usd": 42000000,
+      "transaction_url": "https://etherscan.io/tx/0xabc123"
+    },
+    {
+      "blockchain": "bitcoin",
+      "symbol": "BTC",
+      "id": "9876543210",
+      "transaction_type": "transfer",
+      "hash": "0xdef456",
+      "from": {"address": "bc1aaa", "owner": null, "owner_type": "unknown"},
+      "to": {"address": "bc1bbb", "owner": null, "owner_type": "unknown"},
+      "timestamp": 1785114000,
+      "amount": 900,
+      "amount_usd": 61000000,
+      "transaction_url": "https://blockchair.com/bitcoin/transaction/0xdef456"
+    }
+  ]
+}
