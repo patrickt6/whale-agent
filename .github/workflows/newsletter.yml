@@ -61,7 +61,7 @@ jobs:
       # The newest saved sent log. Each run saves a new cache entry under its own run id,
       # and restore-keys picks the latest one, so the log carries forward run to run.
       - name: Restore the sent log
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: newsletter-state
           key: newsletter-sent-${{ github.run_id }}
@@ -82,7 +82,7 @@ jobs:
 
       - name: Save the sent log
         if: always()
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: newsletter-state
           key: newsletter-sent-${{ github.run_id }}
